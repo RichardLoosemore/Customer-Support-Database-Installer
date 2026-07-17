@@ -1,14 +1,14 @@
 # Customer Support Database - Installation
 
-This repository contains the ClickOnce installation files for the Customer Support Centralized Database application.
+This repository contains the ClickOnce installation files for the Customer Support Centralised Database application.
 
 ## 🚀 Quick Install
 
-**[Click here to install the application](https://richardloosemore.github.io/Customer-Support-Database-Installer/publish.htm)**
+**[Click here to install the application](https://richardloosemore.github.io/Customer-Support-Database-Installer/)**
 
 Or use the direct installation link:
 ```
-https://richardloosemore.github.io/Customer-Support-Database-Installer/Customer%20Support%20Centralized%20Database.application
+https://richardloosemore.github.io/Customer-Support-Database-Installer/Customer%20Support%20Centralised%20Database.application
 ```
 
 ## 📋 System Requirements
