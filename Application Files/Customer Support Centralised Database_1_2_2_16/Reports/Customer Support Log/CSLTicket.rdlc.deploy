@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2008/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <Body>
+	<ReportItems>
+	  <Textbox Name="TitleTextbox">
+		<CanGrow>true</CanGrow><KeepTogether>true</KeepTogether>
+		<Paragraphs><Paragraph><TextRuns><TextRun><Value>CSL Ticket</Value><Style><FontSize>12pt</FontSize><FontWeight>Bold</FontWeight></Style></TextRun></TextRuns><Style /></Paragraph></Paragraphs>
+		<Top>0.15in</Top><Left>0.25in</Left><Height>0.3in</Height><Width>6.9in</Width><Style><FontFamily>Segoe UI</FontFamily></Style>
+	  </Textbox>
+	  <Textbox Name="RangeText">
+		<CanGrow>true</CanGrow><KeepTogether>true</KeepTogether>
+		<Paragraphs><Paragraph><TextRuns><TextRun><Value>=IIf(IsNothing(First(Fields!DateRangeText.Value, "CompanyHeader")), "", First(Fields!DateRangeText.Value, "CompanyHeader"))</Value><Style><FontSize>8.5pt</FontSize></Style></TextRun></TextRuns><Style /></Paragraph></Paragraphs>
+		<Top>0.48in</Top><Left>0.25in</Left><Height>0.2in</Height><Width>6.9in</Width><ZIndex>1</ZIndex><Style><FontFamily>Segoe UI</FontFamily></Style>
+	  </Textbox>
+
+	  <Textbox Name="CaseNumberLabel"><Paragraphs><Paragraph><TextRuns><TextRun><Value>Case Number:</Value><Style><FontWeight>Bold</FontWeight></Style></TextRun></TextRuns><Style /></Paragraph></Paragraphs><Top>0.78in</Top><Left>0.25in</Left><Height>0.2in</Height><Width>1.2in</Width><Style><FontFamily>Segoe UI</FontFamily><FontSize>8pt</FontSize></Style></Textbox>
+	  <Textbox Name="CaseNumberValue"><Paragraphs><Paragraph><TextRuns><TextRun><Value>=IIf(IsNothing(First(Fields!CaseNumber.Value, "CslTicketItems")), "", First(Fields!CaseNumber.Value, "CslTicketItems"))</Value><Style /></TextRun></TextRuns><Style /></Paragraph></Paragraphs><Top>0.78in</Top><Left>1.55in</Left><Height>0.2in</Height><Width>2.0in</Width><Style><FontFamily>Segoe UI</FontFamily><FontSize>8pt</FontSize></Style></Textbox>
+
+	  <Textbox Name="CustomerLabel"><Paragraphs><Paragraph><TextRuns><TextRun><Value>Customer:</Value><Style><FontWeight>Bold</FontWeight></Style></TextRun></TextRuns><Style /></Paragraph></Paragraphs><Top>1.0in</Top><Left>0.25in</Left><Height>0.2in</Height><Width>1.2in</Width><Style><FontFamily>Segoe UI</FontFamily><FontSize>8pt</FontSize></Style></Textbox>
+	  <Textbox Name="CustomerValue"><CanGrow>true</CanGrow><Paragraphs><Paragraph><TextRuns><TextRun><Value>=IIf(IsNothing(First(Fields!CustomerName.Value, "CslTicketItems")), "", First(Fields!CustomerName.Value, "CslTicketItems"))</Value><Style /></TextRun></TextRuns><Style /></Paragraph></Paragraphs><Top>1.0in</Top><Left>1.55in</Left><Height>0.2in</Height><Width>5.6in</Width><Style><FontFamily>Segoe UI</FontFamily><FontSize>8pt</FontSize></Style></Textbox>
+
+	  <Textbox Name="StatusLabel"><Paragraphs><Paragraph><TextRuns><TextRun><Value>Status:</Value><Style><FontWeight>Bold</FontWeight></Style></TextRun></TextRuns><Style /></Paragraph></Paragraphs><Top>1.22in</Top><Left>0.25in</Left><Height>0.2in</Height><Width>1.2in</Width><Style><FontFamily>Segoe UI</FontFamily><FontSize>8pt</FontSize></Style></Textbox>
+	  <Textbox Name="StatusValue"><Paragraphs><Paragraph><TextRuns><TextRun><Value>=IIf(IsNothing(First(Fields!Status.Value, "CslTicketItems")), "", First(Fields!Status.Value, "CslTicketItems"))</Value><Style /></TextRun></TextRuns><Style /></Paragraph></Paragraphs><Top>1.22in</Top><Left>1.55in</Left><Height>0.2in</Height><Width>2.0in</Width><Style><FontFamily>Segoe UI</FontFamily><FontSize>8pt</FontSize></Style></Textbox>
+
+	  <Textbox Name="PriorityLabel"><Paragraphs><Paragraph><TextRuns><TextRun><Value>Priority:</Value><Style><FontWeight>Bold</FontWeight></Style></TextRun></TextRuns><Style /></Paragraph></Paragraphs><Top>1.22in</Top><Left>3.75in</Left><Height>0.2in</Height><Width>1.0in</Width><Style><FontFamily>Segoe UI</FontFamily><FontSize>8pt</FontSize></Style></Textbox>
+	  <Textbox Name="PriorityValue"><Paragraphs><Paragraph><TextRuns><TextRun><Value>=IIf(IsNothing(First(Fields!Priority.Value, "CslTicketItems")), "", First(Fields!Priority.Value, "CslTicketItems"))</Value><Style /></TextRun></TextRuns><Style /></Paragraph></Paragraphs><Top>1.22in</Top><Left>4.8in</Left><Height>0.2in</Height><Width>2.35in</Width><Style><FontFamily>Segoe UI</FontFamily><FontSize>8pt</FontSize></Style></Textbox>
+
+	  <Textbox Name="OpenedLabel"><Paragraphs><Paragraph><TextRuns><TextRun><Value>Date Opened:</Value><Style><FontWeight>Bold</FontWeight></Style></TextRun></TextRuns><Style /></Paragraph></Paragraphs><Top>1.44in</Top><Left>0.25in</Left><Height>0.2in</Height><Width>1.2in</Width><Style><FontFamily>Segoe UI</FontFamily><FontSize>8pt</FontSize></Style></Textbox>
+	  <Textbox Name="OpenedValue"><Paragraphs><Paragraph><TextRuns><TextRun><Value>=IIf(IsNothing(First(Fields!DateOpenedText.Value, "CslTicketItems")), "", First(Fields!DateOpenedText.Value, "CslTicketItems"))</Value><Style /></TextRun></TextRuns><Style /></Paragraph></Paragraphs><Top>1.44in</Top><Left>1.55in</Left><Height>0.2in</Height><Width>2.0in</Width><Style><FontFamily>Segoe UI</FontFamily><FontSize>8pt</FontSize></Style></Textbox>
+
+	  <Textbox Name="ClosedLabel"><Paragraphs><Paragraph><TextRuns><TextRun><Value>Date Closed:</Value><Style><FontWeight>Bold</FontWeight></Style></TextRun></TextRuns><Style /></Paragraph></Paragraphs><Top>1.44in</Top><Left>3.75in</Left><Height>0.2in</Height><Width>1.0in</Width><Style><FontFamily>Segoe UI</FontFamily><FontSize>8pt</FontSize></Style></Textbox>
+	  <Textbox Name="ClosedValue"><Paragraphs><Paragraph><TextRuns><TextRun><Value>=IIf(IsNothing(First(Fields!DateClosedText.Value, "CslTicketItems")), "", First(Fields!DateClosedText.Value, "CslTicketItems"))</Value><Style /></TextRun></TextRuns><Style /></Paragraph></Paragraphs><Top>1.44in</Top><Left>4.8in</Left><Height>0.2in</Height><Width>2.35in</Width><Style><FontFamily>Segoe UI</FontFamily><FontSize>8pt</FontSize></Style></Textbox>
+
+	  <Textbox Name="MachineLabel"><Paragraphs><Paragraph><TextRuns><TextRun><Value>Machine:</Value><Style><FontWeight>Bold</FontWeight></Style></TextRun></TextRuns><Style /></Paragraph></Paragraphs><Top>1.66in</Top><Left>0.25in</Left><Height>0.2in</Height><Width>1.2in</Width><Style><FontFamily>Segoe UI</FontFamily><FontSize>8pt</FontSize></Style></Textbox>
+	  <Textbox Name="MachineValue"><CanGrow>true</CanGrow><Paragraphs><Paragraph><TextRuns><TextRun><Value>=IIf(IsNothing(First(Fields!MachineText.Value, "CslTicketItems")), "", First(Fields!MachineText.Value, "CslTicketItems"))</Value><Style /></TextRun></TextRuns><Style /></Paragraph></Paragraphs><Top>1.66in</Top><Left>1.55in</Left><Height>0.2in</Height><Width>5.6in</Width><Style><FontFamily>Segoe UI</FontFamily><FontSize>8pt</FontSize></Style></Textbox>
+
+	  <Textbox Name="SummaryLabel"><Paragraphs><Paragraph><TextRuns><TextRun><Value>Summary:</Value><Style><FontWeight>Bold</FontWeight></Style></TextRun></TextRuns><Style /></Paragraph></Paragraphs><Top>1.92in</Top><Left>0.25in</Left><Height>0.2in</Height><Width>1.2in</Width><Style><FontFamily>Segoe UI</FontFamily><FontSize>8pt</FontSize></Style></Textbox>
+	  <Textbox Name="SummaryValue"><CanGrow>true</CanGrow><Paragraphs><Paragraph><TextRuns><TextRun><Value>=IIf(IsNothing(First(Fields!Summary.Value, "CslTicketItems")), "", First(Fields!Summary.Value, "CslTicketItems"))</Value><Style /></TextRun></TextRuns><Style /></Paragraph></Paragraphs><Top>1.92in</Top><Left>1.55in</Left><Height>0.2in</Height><Width>5.6in</Width><Style><FontFamily>Segoe UI</FontFamily><FontSize>8pt</FontSize></Style></Textbox>
+
+	  <Textbox Name="DescriptionLabel"><Paragraphs><Paragraph><TextRuns><TextRun><Value>Description:</Value><Style><FontWeight>Bold</FontWeight></Style></TextRun></TextRuns><Style /></Paragraph></Paragraphs><Top>2.2in</Top><Left>0.25in</Left><Height>0.2in</Height><Width>1.2in</Width><Style><FontFamily>Segoe UI</FontFamily><FontSize>8pt</FontSize></Style></Textbox>
+	  <Textbox Name="DescriptionValue"><CanGrow>true</CanGrow><Paragraphs><Paragraph><TextRuns><TextRun><Value>=IIf(IsNothing(First(Fields!Description.Value, "CslTicketItems")), "", First(Fields!Description.Value, "CslTicketItems"))</Value><Style /></TextRun></TextRuns><Style /></Paragraph></Paragraphs><Top>2.2in</Top><Left>1.55in</Left><Height>0.5in</Height><Width>5.6in</Width><Style><FontFamily>Segoe UI</FontFamily><FontSize>8pt</FontSize></Style></Textbox>
+	</ReportItems>
+	<Height>2.9in</Height><Style />
+  </Body>
+  <Width>7.75in</Width>
+  <Page>
+	<PageHeader><Height>1in</Height><PrintOnFirstPage>true</PrintOnFirstPage><PrintOnLastPage>true</PrintOnLastPage>
+	  <ReportItems><Image Name="CompanyLogoImage"><Source>Database</Source><Value>=First(Fields!LogoBytes.Value, "CompanyHeader")</Value><MIMEType>image/png</MIMEType><Sizing>FitProportional</Sizing><Top>0.05in</Top><Left>0.25in</Left><Height>0.8in</Height><Width>2in</Width><Style /></Image></ReportItems><Style />
+	</PageHeader>
+	<PageFooter><Height>0.5in</Height><PrintOnFirstPage>true</PrintOnFirstPage><PrintOnLastPage>true</PrintOnLastPage>
+	  <ReportItems>
+		<Textbox Name="PrintDateTime"><CanGrow>true</CanGrow><KeepTogether>true</KeepTogether><Paragraphs><Paragraph><TextRuns><TextRun><Value>="Date printed: " &amp; Today() &amp; "    Time printed: " &amp; TimeOfDay</Value><Style><FontSize>8pt</FontSize></Style></TextRun></TextRuns><Style /></Paragraph></Paragraphs><Top>0.25in</Top><Left>0.25in</Left><Height>0.25in</Height><Width>3.5in</Width><Style><FontFamily>Segoe UI</FontFamily></Style></Textbox>
+		<Textbox Name="PageNumbers"><CanGrow>true</CanGrow><KeepTogether>true</KeepTogether><Paragraphs><Paragraph><TextRuns><TextRun><Value>Page </Value><Style /></TextRun><TextRun><Value>=Globals!PageNumber</Value><Style /></TextRun><TextRun><Value> of </Value><Style /></TextRun><TextRun><Value>=Globals!TotalPages</Value><Style /></TextRun></TextRuns><Style><TextAlign>Right</TextAlign></Style></Paragraph></Paragraphs><Top>0.25in</Top><Left>4.75in</Left><Height>0.25in</Height><Width>2.75in</Width><ZIndex>1</ZIndex><Style /></Textbox>
+	  </ReportItems><Style />
+	</PageFooter>
+	<PageWidth>8.27in</PageWidth><PageHeight>11.69in</PageHeight><LeftMargin>0.5in</LeftMargin><RightMargin>0.5in</RightMargin><TopMargin>0.5in</TopMargin><BottomMargin>0.5in</BottomMargin><Style />
+  </Page>
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources><DataSource Name="MainDataSource"><ConnectionProperties><DataProvider>System.Data.DataSet</DataProvider><ConnectString /></ConnectionProperties><rd:DataSourceID>056e0872-6313-4e81-b58f-abf8ff85fa15</rd:DataSourceID></DataSource></DataSources>
+  <DataSets>
+	<DataSet Name="CompanyHeader"><Query><DataSourceName>MainDataSource</DataSourceName><CommandText>/* Local object data */</CommandText></Query><Fields>
+	  <Field Name="CompanyName"><DataField>CompanyName</DataField><rd:TypeName>System.String</rd:TypeName></Field>
+	  <Field Name="LogoBytes"><DataField>LogoBytes</DataField><rd:TypeName>System.Byte[]</rd:TypeName></Field>
+	  <Field Name="DateRangeText"><DataField>DateRangeText</DataField><rd:TypeName>System.String</rd:TypeName></Field>
+	</Fields></DataSet>
+	<DataSet Name="CslTicketItems"><Query><DataSourceName>MainDataSource</DataSourceName><CommandText>/* Local object data */</CommandText></Query><Fields>
+	  <Field Name="CaseNumber"><DataField>CaseNumber</DataField><rd:TypeName>System.Int32</rd:TypeName></Field>
+	  <Field Name="CustomerName"><DataField>CustomerName</DataField><rd:TypeName>System.String</rd:TypeName></Field>
+	  <Field Name="Summary"><DataField>Summary</DataField><rd:TypeName>System.String</rd:TypeName></Field>
+	  <Field Name="Description"><DataField>Description</DataField><rd:TypeName>System.String</rd:TypeName></Field>
+	  <Field Name="Status"><DataField>Status</DataField><rd:TypeName>System.String</rd:TypeName></Field>
+	  <Field Name="Priority"><DataField>Priority</DataField><rd:TypeName>System.String</rd:TypeName></Field>
+	  <Field Name="DateOpenedText"><DataField>DateOpenedText</DataField><rd:TypeName>System.String</rd:TypeName></Field>
+	  <Field Name="DateClosedText"><DataField>DateClosedText</DataField><rd:TypeName>System.String</rd:TypeName></Field>
+	  <Field Name="MachineText"><DataField>MachineText</DataField><rd:TypeName>System.String</rd:TypeName></Field>
+	</Fields></DataSet>
+  </DataSets>
+  <Language>en-GB</Language>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportID>b4b5872f-98f3-4748-a152-b387129f2d77</rd:ReportID>
+</Report>
