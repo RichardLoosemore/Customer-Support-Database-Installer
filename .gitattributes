@@ -1,0 +1,6 @@
+﻿# Keep ClickOnce deployment payload byte-identical
+Application Files/** -text
+*.application -text
+*.manifest -text
+*.deploy -text
+setup.exe -text
