@@ -1,4 +1,0 @@
-# ClickOnce manifests and deployment files must NOT have line ending conversion
-*.application binary
-*.manifest binary
-*.deploy binary
