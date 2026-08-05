@@ -68,14 +68,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Customer Support Centralised Database.exe" size="34856448">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Customer Support Centralised Database.exe" size="34147328">
       <assemblyIdentity name="Customer Support Centralised Database" version="1.2.2.18" language="neutral" processorArchitecture="amd64" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>6tFhE+h++sLCixHmguH6jJu5H/fRr+TfVO0WXj4jzj8=</dsig:DigestValue>
+        <dsig:DigestValue>m0o9B3AzpT67CIaNRhJEEtdXePbO/r7uK8AG0dx7NwQ=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
