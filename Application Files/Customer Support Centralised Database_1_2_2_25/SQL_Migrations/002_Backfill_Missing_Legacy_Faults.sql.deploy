@@ -1,0 +1,53 @@
+-- Backfill missing legacy Fault_Grouping entries for machine-assigned faults
+-- This script handles the case where faults were assigned to machines via the matrix
+-- but were never created in the legacy Fault_Grouping table (before the EnsureFaultExistsInLegacyTable fix)
+
+SET NOCOUNT ON;
+
+DECLARE @MissingCount INT = 0;
+
+-- First, identify faults that exist in Fault_Grouping_Master and Machine_Fault_Mapping
+-- but are NOT in the legacy Fault_Grouping table
+SELECT @MissingCount = COUNT(DISTINCT fm.Fault_Master_ID)
+FROM dbo.Fault_Grouping_Master fm
+INNER JOIN dbo.Machine_Fault_Mapping mfm ON fm.Fault_Master_ID = mfm.Fault_Master_ID
+WHERE NOT EXISTS (
+	SELECT 1 FROM dbo.Fault_Grouping fg 
+	WHERE fg.Fault_Group = fm.Fault_Group
+);
+
+PRINT 'Found ' + CAST(@MissingCount AS NVARCHAR(10)) + ' missing legacy fault entries.';
+
+-- Create the missing legacy fault entries
+-- For each master fault that's mapped to machines, create legacy entries 
+-- for each machine it's assigned to (respecting the NOT NULL constraint on Fault_Machine_ID)
+INSERT INTO dbo.Fault_Grouping (Fault_Group, Fault_Machine_ID)
+SELECT DISTINCT fm.Fault_Group, mfm.Fault_Machine_ID
+FROM dbo.Fault_Grouping_Master fm
+INNER JOIN dbo.Machine_Fault_Mapping mfm ON fm.Fault_Master_ID = mfm.Fault_Master_ID
+WHERE fm.IsActive = 1
+  AND NOT EXISTS (
+	  SELECT 1 FROM dbo.Fault_Grouping fg 
+	  WHERE fg.Fault_Group = fm.Fault_Group
+		AND fg.Fault_Machine_ID = mfm.Fault_Machine_ID
+  );
+
+DECLARE @InsertedCount INT = @@ROWCOUNT;
+PRINT 'Successfully created ' + CAST(@InsertedCount AS NVARCHAR(10)) + ' new legacy fault entries.';
+
+-- Verify the backfill
+PRINT '';
+PRINT 'Verification - New legacy faults created:';
+SELECT fg.Fault_ID, fg.Fault_Group, fg.Fault_Machine_ID
+FROM dbo.Fault_Grouping fg
+WHERE fg.Fault_Group IN (
+	SELECT DISTINCT fm.Fault_Group
+	FROM dbo.Fault_Grouping_Master fm
+	INNER JOIN dbo.Machine_Fault_Mapping mfm ON fm.Fault_Master_ID = mfm.Fault_Master_ID
+)
+ORDER BY fg.Fault_ID;
+
+DECLARE @TotalCount INT;
+SELECT @TotalCount = COUNT(*) FROM dbo.Fault_Grouping;
+PRINT '';
+PRINT 'Backfill complete. Total legacy faults now: ' + CAST(@TotalCount AS NVARCHAR(10));
