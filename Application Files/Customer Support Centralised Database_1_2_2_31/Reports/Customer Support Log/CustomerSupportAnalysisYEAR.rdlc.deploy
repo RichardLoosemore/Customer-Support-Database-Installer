@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2008/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <Body>
+    <ReportItems>
+      <Rectangle Name="Page1Rectangle">
+        <ReportItems>
+          <Textbox Name="Page1Title">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=First(Fields!ReportTitle.Value, "AnalysisSummary")</Value>
+                    <Style>
+                      <FontSize>14pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style><TextAlign>Center</TextAlign></Style>
+              </Paragraph>
+            </Paragraphs>
+            <Top>0.05in</Top>
+            <Left>1.65in</Left>
+            <Height>0.25in</Height>
+            <Width>4.2in</Width>
+            <Style><FontFamily>Segoe UI</FontFamily></Style>
+          </Textbox>
+          <Textbox Name="Page1DateRange">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=First(Fields!DateRangeText.Value, "AnalysisSummary")</Value>
+                    <Style><FontSize>8pt</FontSize></Style>
+                  </TextRun>
+                </TextRuns>
+                <Style><TextAlign>Center</TextAlign></Style>
+              </Paragraph>
+            </Paragraphs>
+            <Top>0.35in</Top>
+            <Left>1.85in</Left>
+            <Height>0.2in</Height>
+            <Width>3.8in</Width>
+            <Style><FontFamily>Segoe UI</FontFamily></Style>
+          </Textbox>
+          <Textbox Name="CompanyAddressBox">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph><TextRuns><TextRun><Value>=First(Fields!CompanyName.Value, "CompanyHeader")</Value><Style><FontSize>8pt</FontSize></Style></TextRun></TextRuns><Style><TextAlign>Right</TextAlign></Style></Paragraph>
+              <Paragraph><TextRuns><TextRun><Value>=First(Fields!CompanyAddressLine1.Value, "CompanyHeader")</Value><Style><FontSize>8pt</FontSize></Style></TextRun></TextRuns><Style><TextAlign>Right</TextAlign></Style></Paragraph>
+              <Paragraph><TextRuns><TextRun><Value>=First(Fields!CompanyAddressLine2.Value, "CompanyHeader")</Value><Style><FontSize>8pt</FontSize></Style></TextRun></TextRuns><Style><TextAlign>Right</TextAlign></Style></Paragraph>
+              <Paragraph><TextRuns><TextRun><Value>=First(Fields!CompanyAddressLine3.Value, "CompanyHeader")</Value><Style><FontSize>8pt</FontSize></Style></TextRun></TextRuns><Style><TextAlign>Right</TextAlign></Style></Paragraph>
+              <Paragraph><TextRuns><TextRun><Value>=First(Fields!CompanyPostCode.Value, "CompanyHeader")</Value><Style><FontSize>8pt</FontSize></Style></TextRun></TextRuns><Style><TextAlign>Right</TextAlign></Style></Paragraph>
+              <Paragraph><TextRuns><TextRun><Value>=First(Fields!CompanyCountry.Value, "CompanyHeader")</Value><Style><FontSize>8pt</FontSize></Style></TextRun></TextRuns><Style><TextAlign>Right</TextAlign></Style></Paragraph>
+              <Paragraph><TextRuns><TextRun><Value>="Tel: " &amp; First(Fields!CompanyPhone.Value, "CompanyHeader")</Value><Style><FontSize>8pt</FontSize></Style></TextRun></TextRuns><Style><TextAlign>Right</TextAlign></Style></Paragraph>
+            </Paragraphs>
+            <Top>0.05in</Top>
+            <Left>5.2in</Left>
+            <Height>0.95in</Height>
+            <Width>2.1in</Width>
+            <Style><FontFamily>Segoe UI</FontFamily></Style>
+          </Textbox>
+          <Textbox Name="OverviewTextBox">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=First(Fields!OverviewText.Value, "AnalysisSummary")</Value>
+                    <Style><FontSize>8pt</FontSize></Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <Top>1.15in</Top>
+            <Left>0.25in</Left>
+            <Height>0.55in</Height>
+            <Width>7.05in</Width>
+            <Style><FontFamily>Segoe UI</FontFamily></Style>
+          </Textbox>
+          <Textbox Name="EquipmentSummaryBox">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=First(Fields!EquipmentSummaryText.Value, "AnalysisSummary")</Value>
+                    <Style><FontSize>8pt</FontSize></Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <Top>1.9in</Top>
+            <Left>0.25in</Left>
+            <Height>0.6in</Height>
+            <Width>7.05in</Width>
+            <Style><FontFamily>Segoe UI</FontFamily></Style>
+          </Textbox>
+          <Image Name="EquipmentChartsImage"><Source>Database</Source><Value>=First(Fields!ImageBytes.Value, "EquipmentChartImage")</Value><MIMEType>image/png</MIMEType><Sizing>FitProportional</Sizing><Top>2.8in</Top><Left>0.55in</Left><Height>5.4in</Height><Width>6.75in</Width><Style /></Image>
+        </ReportItems>
+        <KeepTogether>true</KeepTogether>
+        
+        <Top>0in</Top>
+        <Left>0in</Left>
+        <Height>9.6in</Height>
+        <Width>7.35in</Width>
+        <Style />
+      </Rectangle>
+      <Rectangle Name="Page2Rectangle">
+        <ReportItems>
+          <Textbox Name="OverallHeading">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs><Paragraph><TextRuns><TextRun><Value>Who or what has caused the issue?</Value><Style><FontSize>11pt</FontSize><FontWeight>Bold</FontWeight></Style></TextRun></TextRuns><Style /></Paragraph></Paragraphs>
+            <Top>0.1in</Top>
+            <Left>0.25in</Left>
+            <Height>0.25in</Height>
+            <Width>7.05in</Width>
+            <Style><FontFamily>Segoe UI</FontFamily></Style>
+          </Textbox>
+          <Textbox Name="OverallSummaryBox">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs><Paragraph><TextRuns><TextRun><Value>=First(Fields!OverallSummaryText.Value, "AnalysisSummary")</Value><Style><FontSize>8pt</FontSize></Style></TextRun></TextRuns><Style /></Paragraph></Paragraphs>
+            <Top>0.5in</Top>
+            <Left>0.25in</Left>
+            <Height>0.6in</Height>
+            <Width>7.05in</Width>
+            <Style><FontFamily>Segoe UI</FontFamily></Style>
+          </Textbox>
+          <Image Name="OverallChartsImage"><Source>Database</Source><Value>=First(Fields!ImageBytes.Value, "OverallChartImage")</Value><MIMEType>image/png</MIMEType><Sizing>FitProportional</Sizing><Top>1.35in</Top><Left>0.55in</Left><Height>5.65in</Height><Width>6.75in</Width><Style /></Image>
+        </ReportItems>
+        <KeepTogether>true</KeepTogether>
+        
+        <Top>9.7in</Top>
+        <Left>0in</Left>
+        <Height>9.6in</Height>
+        <Width>7.35in</Width>
+        <Style />
+      </Rectangle>
+      <Rectangle Name="Page3Rectangle">
+        <ReportItems>
+          <Textbox Name="CustomerHeading"><CanGrow>true</CanGrow><KeepTogether>true</KeepTogether><Paragraphs><Paragraph><TextRuns><TextRun><Value>What do customer issues consist of?</Value><Style><FontSize>11pt</FontSize><FontWeight>Bold</FontWeight></Style></TextRun></TextRuns><Style /></Paragraph></Paragraphs><Top>0.1in</Top><Left>0.25in</Left><Height>0.25in</Height><Width>7.05in</Width><Style><FontFamily>Segoe UI</FontFamily></Style></Textbox>
+          <Textbox Name="CustomerSummaryBox"><CanGrow>true</CanGrow><KeepTogether>true</KeepTogether><Paragraphs><Paragraph><TextRuns><TextRun><Value>=First(Fields!CustomerSummaryText.Value, "AnalysisSummary")</Value><Style><FontSize>8pt</FontSize></Style></TextRun></TextRuns><Style /></Paragraph></Paragraphs><Top>0.5in</Top><Left>0.25in</Left><Height>0.6in</Height><Width>7.05in</Width><Style><FontFamily>Segoe UI</FontFamily></Style></Textbox>
+          <Image Name="CustomerChartsImage"><Source>Database</Source><Value>=First(Fields!ImageBytes.Value, "CustomerChartImage")</Value><MIMEType>image/png</MIMEType><Sizing>FitProportional</Sizing><Top>1.35in</Top><Left>0.55in</Left><Height>5.65in</Height><Width>6.75in</Width><Style /></Image>
+        </ReportItems>
+        <KeepTogether>true</KeepTogether>
+        
+        <Top>19.4in</Top>
+        <Left>0in</Left>
+        <Height>9.6in</Height>
+        <Width>7.35in</Width>
+        <Style />
+      </Rectangle>
+      <Rectangle Name="Page4Rectangle">
+        <ReportItems>
+          <Textbox Name="SheppeeHeading"><CanGrow>true</CanGrow><KeepTogether>true</KeepTogether><Paragraphs><Paragraph><TextRuns><TextRun><Value>What do Sheppee issues consist of?</Value><Style><FontSize>11pt</FontSize><FontWeight>Bold</FontWeight></Style></TextRun></TextRuns><Style /></Paragraph></Paragraphs><Top>0.1in</Top><Left>0.25in</Left><Height>0.25in</Height><Width>7.05in</Width><Style><FontFamily>Segoe UI</FontFamily></Style></Textbox>
+          <Textbox Name="SheppeeSummaryBox"><CanGrow>true</CanGrow><KeepTogether>true</KeepTogether><Paragraphs><Paragraph><TextRuns><TextRun><Value>=First(Fields!SheppeeSummaryText.Value, "AnalysisSummary")</Value><Style><FontSize>8pt</FontSize></Style></TextRun></TextRuns><Style /></Paragraph></Paragraphs><Top>0.5in</Top><Left>0.25in</Left><Height>0.6in</Height><Width>7.05in</Width><Style><FontFamily>Segoe UI</FontFamily></Style></Textbox>
+          <Image Name="SheppeeChartsImage"><Source>Database</Source><Value>=First(Fields!ImageBytes.Value, "SheppeeChartImage")</Value><MIMEType>image/png</MIMEType><Sizing>FitProportional</Sizing><Top>1.35in</Top><Left>0.55in</Left><Height>5.65in</Height><Width>6.75in</Width><Style /></Image>
+        </ReportItems>
+        <KeepTogether>true</KeepTogether>
+        
+        <Top>29.1in</Top>
+        <Left>0in</Left>
+        <Height>9.6in</Height>
+        <Width>7.35in</Width>
+        <Style />
+      </Rectangle>
+      <Rectangle Name="Page5Rectangle">
+        <ReportItems>
+          <Textbox Name="SupplierHeading"><CanGrow>true</CanGrow><KeepTogether>true</KeepTogether><Paragraphs><Paragraph><TextRuns><TextRun><Value>What do supplier issues consist of?</Value><Style><FontSize>11pt</FontSize><FontWeight>Bold</FontWeight></Style></TextRun></TextRuns><Style /></Paragraph></Paragraphs><Top>0.1in</Top><Left>0.25in</Left><Height>0.25in</Height><Width>7.05in</Width><Style><FontFamily>Segoe UI</FontFamily></Style></Textbox>
+          <Textbox Name="SupplierSummaryBox"><CanGrow>true</CanGrow><KeepTogether>true</KeepTogether><Paragraphs><Paragraph><TextRuns><TextRun><Value>=First(Fields!SupplierSummaryText.Value, "AnalysisSummary")</Value><Style><FontSize>8pt</FontSize></Style></TextRun></TextRuns><Style /></Paragraph></Paragraphs><Top>0.5in</Top><Left>0.25in</Left><Height>0.6in</Height><Width>7.05in</Width><Style><FontFamily>Segoe UI</FontFamily></Style></Textbox>
+          <Image Name="SupplierChartsImage"><Source>Database</Source><Value>=First(Fields!ImageBytes.Value, "SupplierChartImage")</Value><MIMEType>image/png</MIMEType><Sizing>FitProportional</Sizing><Top>1.35in</Top><Left>0.55in</Left><Height>5.65in</Height><Width>6.75in</Width><Style /></Image>
+        </ReportItems>
+        <KeepTogether>true</KeepTogether>
+        
+        <Top>38.8in</Top>
+        <Left>0in</Left>
+        <Height>9.6in</Height>
+        <Width>7.35in</Width>
+        <Style />
+      </Rectangle>
+      <Rectangle Name="Page6Rectangle">
+        <ReportItems>
+          <Textbox Name="InconclusiveHeading"><CanGrow>true</CanGrow><KeepTogether>true</KeepTogether><Paragraphs><Paragraph><TextRuns><TextRun><Value>What do inconclusive issues consist of?</Value><Style><FontSize>11pt</FontSize><FontWeight>Bold</FontWeight></Style></TextRun></TextRuns><Style /></Paragraph></Paragraphs><Top>0.1in</Top><Left>0.25in</Left><Height>0.25in</Height><Width>7.05in</Width><Style><FontFamily>Segoe UI</FontFamily></Style></Textbox>
+          <Textbox Name="InconclusiveSummaryBox"><CanGrow>true</CanGrow><KeepTogether>true</KeepTogether><Paragraphs><Paragraph><TextRuns><TextRun><Value>=First(Fields!InconclusiveSummaryText.Value, "AnalysisSummary")</Value><Style><FontSize>8pt</FontSize></Style></TextRun></TextRuns><Style /></Paragraph></Paragraphs><Top>0.5in</Top><Left>0.25in</Left><Height>0.6in</Height><Width>7.05in</Width><Style><FontFamily>Segoe UI</FontFamily></Style></Textbox>
+          <Image Name="InconclusiveChartsImage"><Source>Database</Source><Value>=First(Fields!ImageBytes.Value, "InconclusiveChartImage")</Value><MIMEType>image/png</MIMEType><Sizing>FitProportional</Sizing><Top>1.35in</Top><Left>0.55in</Left><Height>5.65in</Height><Width>6.75in</Width><Style /></Image>
+        </ReportItems>
+        <KeepTogether>true</KeepTogether>
+        
+        <Top>48.5in</Top>
+        <Left>0in</Left>
+        <Height>9.6in</Height>
+        <Width>7.35in</Width>
+        <Style />
+      </Rectangle>
+      <Rectangle Name="Page7Rectangle">
+        <ReportItems>
+          <Textbox Name="WearAndTearHeading"><CanGrow>true</CanGrow><KeepTogether>true</KeepTogether><Paragraphs><Paragraph><TextRuns><TextRun><Value>What do Wear and Tear issues consist of?</Value><Style><FontSize>11pt</FontSize><FontWeight>Bold</FontWeight></Style></TextRun></TextRuns><Style /></Paragraph></Paragraphs><Top>0.1in</Top><Left>0.25in</Left><Height>0.25in</Height><Width>7.05in</Width><Style><FontFamily>Segoe UI</FontFamily></Style></Textbox>
+          <Textbox Name="WearAndTearSummaryBox"><CanGrow>true</CanGrow><KeepTogether>true</KeepTogether><Paragraphs><Paragraph><TextRuns><TextRun><Value>=First(Fields!WearAndTearSummaryText.Value, "AnalysisSummary")</Value><Style><FontSize>8pt</FontSize></Style></TextRun></TextRuns><Style /></Paragraph></Paragraphs><Top>0.5in</Top><Left>0.25in</Left><Height>0.6in</Height><Width>7.05in</Width><Style><FontFamily>Segoe UI</FontFamily></Style></Textbox>
+          <Image Name="WearAndTearChartsImage"><Source>Database</Source><Value>=First(Fields!ImageBytes.Value, "WearAndTearChartImage")</Value><MIMEType>image/png</MIMEType><Sizing>FitProportional</Sizing><Top>1.35in</Top><Left>0.55in</Left><Height>5.65in</Height><Width>6.75in</Width><Style /></Image>
+        </ReportItems>
+        <KeepTogether>true</KeepTogether>
+        
+        <Top>58.2in</Top>
+        <Left>0in</Left>
+        <Height>9.6in</Height>
+        <Width>7.35in</Width>
+        <Style />
+      </Rectangle>
+      <Rectangle Name="Page8Rectangle">
+        <ReportItems>
+          <Textbox Name="InstallationHeading"><CanGrow>true</CanGrow><KeepTogether>true</KeepTogether><Paragraphs><Paragraph><TextRuns><TextRun><Value>What do installation issues consist of?</Value><Style><FontSize>11pt</FontSize><FontWeight>Bold</FontWeight></Style></TextRun></TextRuns><Style /></Paragraph></Paragraphs><Top>0.1in</Top><Left>0.25in</Left><Height>0.25in</Height><Width>7.05in</Width><Style><FontFamily>Segoe UI</FontFamily></Style></Textbox>
+          <Textbox Name="InstallationSummaryBox"><CanGrow>true</CanGrow><KeepTogether>true</KeepTogether><Paragraphs><Paragraph><TextRuns><TextRun><Value>=First(Fields!InstallationSummaryText.Value, "AnalysisSummary")</Value><Style><FontSize>8pt</FontSize></Style></TextRun></TextRuns><Style /></Paragraph></Paragraphs><Top>0.5in</Top><Left>0.25in</Left><Height>0.6in</Height><Width>7.05in</Width><Style><FontFamily>Segoe UI</FontFamily></Style></Textbox>
+          <Image Name="InstallationChartsImage"><Source>Database</Source><Value>=First(Fields!ImageBytes.Value, "InstallationChartImage")</Value><MIMEType>image/png</MIMEType><Sizing>FitProportional</Sizing><Top>1.35in</Top><Left>0.55in</Left><Height>5.65in</Height><Width>6.75in</Width><Style /></Image>
+        </ReportItems>
+        <KeepTogether>true</KeepTogether>
+        <Top>67.9in</Top>
+        <Left>0in</Left>
+        <Height>9.6in</Height>
+        <Width>7.35in</Width>
+        <Style />
+      </Rectangle>
+    </ReportItems>
+    <Height>77.6in</Height>
+    <Style />
+  </Body>
+  <Width>7.57in</Width>
+  <Page>
+    <PageHeader>
+      <Height>1in</Height>
+      <PrintOnFirstPage>true</PrintOnFirstPage>
+      <PrintOnLastPage>true</PrintOnLastPage>
+      <ReportItems>
+        <Image Name="CompanyLogoImage">
+          <Source>Database</Source>
+          <Value>=First(Fields!LogoBytes.Value, "CompanyHeader")</Value>
+          <MIMEType>image/png</MIMEType>
+          <Sizing>FitProportional</Sizing>
+          <Top>0.05in</Top>
+          <Left>0.25in</Left>
+          <Height>0.8in</Height>
+          <Width>2.2in</Width>
+          <Style />
+        </Image>
+      </ReportItems>
+      <Style />
+    </PageHeader>
+    <PageFooter>
+      <Height>0.45in</Height>
+      <PrintOnFirstPage>true</PrintOnFirstPage>
+      <PrintOnLastPage>true</PrintOnLastPage>
+      <ReportItems>
+        <Textbox Name="PrintDateTime"><CanGrow>true</CanGrow><KeepTogether>true</KeepTogether><Paragraphs><Paragraph><TextRuns><TextRun><Value>="Date printed: " &amp; Today() &amp; "    Time printed: " &amp; TimeOfDay</Value><Style><FontSize>8pt</FontSize></Style></TextRun></TextRuns><Style /></Paragraph></Paragraphs><Top>0.2in</Top><Left>0.25in</Left><Height>0.2in</Height><Width>3.5in</Width><Style><FontFamily>Segoe UI</FontFamily></Style></Textbox>
+        <Textbox Name="PageNumbers"><CanGrow>true</CanGrow><KeepTogether>true</KeepTogether><Paragraphs><Paragraph><TextRuns><TextRun><Value>Page </Value><Style /></TextRun><TextRun><Value>=Globals!PageNumber</Value><Style /></TextRun><TextRun><Value> of </Value><Style /></TextRun><TextRun><Value>=Globals!TotalPages</Value><Style /></TextRun></TextRuns><Style><TextAlign>Right</TextAlign></Style></Paragraph></Paragraphs><Top>0.2in</Top><Left>4.82in</Left><Height>0.2in</Height><Width>2.75in</Width><Style /></Textbox>
+      </ReportItems>
+      <Style />
+    </PageFooter>
+    <PageWidth>8.27in</PageWidth>
+    <PageHeight>11.69in</PageHeight>
+    <LeftMargin>0.35in</LeftMargin>
+    <RightMargin>0.35in</RightMargin>
+    <TopMargin>0.35in</TopMargin>
+    <BottomMargin>0.35in</BottomMargin>
+    <Style />
+  </Page>
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="MainDataSource"><ConnectionProperties><DataProvider>System.Data.DataSet</DataProvider><ConnectString /></ConnectionProperties><rd:DataSourceID>51111111-1111-1111-1111-111111111111</rd:DataSourceID></DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="CompanyHeader"><Query><DataSourceName>MainDataSource</DataSourceName><CommandText>/* Local object data */</CommandText></Query><Fields>
+      <Field Name="CompanyName"><DataField>CompanyName</DataField><rd:TypeName>System.String</rd:TypeName></Field>
+      <Field Name="CompanyAddressLine1"><DataField>CompanyAddressLine1</DataField><rd:TypeName>System.String</rd:TypeName></Field>
+      <Field Name="CompanyAddressLine2"><DataField>CompanyAddressLine2</DataField><rd:TypeName>System.String</rd:TypeName></Field>
+      <Field Name="CompanyAddressLine3"><DataField>CompanyAddressLine3</DataField><rd:TypeName>System.String</rd:TypeName></Field>
+      <Field Name="CompanyPostCode"><DataField>CompanyPostCode</DataField><rd:TypeName>System.String</rd:TypeName></Field>
+      <Field Name="CompanyCountry"><DataField>CompanyCountry</DataField><rd:TypeName>System.String</rd:TypeName></Field>
+      <Field Name="CompanyPhone"><DataField>CompanyPhone</DataField><rd:TypeName>System.String</rd:TypeName></Field>
+      <Field Name="LogoBytes"><DataField>LogoBytes</DataField><rd:TypeName>System.Byte[]</rd:TypeName></Field>
+    </Fields></DataSet>
+    <DataSet Name="AnalysisSummary"><Query><DataSourceName>MainDataSource</DataSourceName><CommandText>/* Local object data */</CommandText></Query><Fields>
+      <Field Name="ReportTitle"><DataField>ReportTitle</DataField><rd:TypeName>System.String</rd:TypeName></Field>
+      <Field Name="DateRangeText"><DataField>DateRangeText</DataField><rd:TypeName>System.String</rd:TypeName></Field>
+      <Field Name="OverviewText"><DataField>OverviewText</DataField><rd:TypeName>System.String</rd:TypeName></Field>
+      <Field Name="EquipmentSummaryText"><DataField>EquipmentSummaryText</DataField><rd:TypeName>System.String</rd:TypeName></Field>
+      <Field Name="OverallSummaryText"><DataField>OverallSummaryText</DataField><rd:TypeName>System.String</rd:TypeName></Field>
+      <Field Name="CustomerSummaryText"><DataField>CustomerSummaryText</DataField><rd:TypeName>System.String</rd:TypeName></Field>
+      <Field Name="SheppeeSummaryText"><DataField>SheppeeSummaryText</DataField><rd:TypeName>System.String</rd:TypeName></Field>
+      <Field Name="SupplierSummaryText"><DataField>SupplierSummaryText</DataField><rd:TypeName>System.String</rd:TypeName></Field>
+      <Field Name="InconclusiveSummaryText"><DataField>InconclusiveSummaryText</DataField><rd:TypeName>System.String</rd:TypeName></Field>
+      <Field Name="InstallationSummaryText"><DataField>InstallationSummaryText</DataField><rd:TypeName>System.String</rd:TypeName></Field>
+      <Field Name="WearAndTearSummaryText"><DataField>WearAndTearSummaryText</DataField><rd:TypeName>System.String</rd:TypeName></Field>
+    </Fields></DataSet>
+    <DataSet Name="EquipmentChartImage"><Query><DataSourceName>MainDataSource</DataSourceName><CommandText>/* Local object data */</CommandText></Query><Fields><Field Name="ImageBytes"><DataField>ImageBytes</DataField><rd:TypeName>System.Byte[]</rd:TypeName></Field></Fields></DataSet>
+    <DataSet Name="OverallChartImage"><Query><DataSourceName>MainDataSource</DataSourceName><CommandText>/* Local object data */</CommandText></Query><Fields><Field Name="ImageBytes"><DataField>ImageBytes</DataField><rd:TypeName>System.Byte[]</rd:TypeName></Field></Fields></DataSet>
+    <DataSet Name="CustomerChartImage"><Query><DataSourceName>MainDataSource</DataSourceName><CommandText>/* Local object data */</CommandText></Query><Fields><Field Name="ImageBytes"><DataField>ImageBytes</DataField><rd:TypeName>System.Byte[]</rd:TypeName></Field></Fields></DataSet>
+    <DataSet Name="SheppeeChartImage"><Query><DataSourceName>MainDataSource</DataSourceName><CommandText>/* Local object data */</CommandText></Query><Fields><Field Name="ImageBytes"><DataField>ImageBytes</DataField><rd:TypeName>System.Byte[]</rd:TypeName></Field></Fields></DataSet>
+    <DataSet Name="SupplierChartImage"><Query><DataSourceName>MainDataSource</DataSourceName><CommandText>/* Local object data */</CommandText></Query><Fields><Field Name="ImageBytes"><DataField>ImageBytes</DataField><rd:TypeName>System.Byte[]</rd:TypeName></Field></Fields></DataSet>
+    <DataSet Name="InconclusiveChartImage"><Query><DataSourceName>MainDataSource</DataSourceName><CommandText>/* Local object data */</CommandText></Query><Fields><Field Name="ImageBytes"><DataField>ImageBytes</DataField><rd:TypeName>System.Byte[]</rd:TypeName></Field></Fields></DataSet>
+    <DataSet Name="WearAndTearChartImage"><Query><DataSourceName>MainDataSource</DataSourceName><CommandText>/* Local object data */</CommandText></Query><Fields><Field Name="ImageBytes"><DataField>ImageBytes</DataField><rd:TypeName>System.Byte[]</rd:TypeName></Field></Fields></DataSet>
+    <DataSet Name="InstallationChartImage"><Query><DataSourceName>MainDataSource</DataSourceName><CommandText>/* Local object data */</CommandText></Query><Fields><Field Name="ImageBytes"><DataField>ImageBytes</DataField><rd:TypeName>System.Byte[]</rd:TypeName></Field></Fields></DataSet>
+    <DataSet Name="EquipmentByYear"><Query><DataSourceName>MainDataSource</DataSourceName><CommandText>/* Local object data */</CommandText></Query><Fields><Field Name="EquipmentCategory"><DataField>EquipmentCategory</DataField><rd:TypeName>System.String</rd:TypeName></Field><Field Name="EquipmentPeriodLabel"><DataField>EquipmentPeriodLabel</DataField><rd:TypeName>System.String</rd:TypeName></Field><Field Name="EquipmentPeriodSort"><DataField>EquipmentPeriodSort</DataField><rd:TypeName>System.Int32</rd:TypeName></Field><Field Name="EquipmentCaseCount"><DataField>EquipmentCaseCount</DataField><rd:TypeName>System.Int32</rd:TypeName></Field></Fields></DataSet>
+    <DataSet Name="EquipmentTrendByYear"><Query><DataSourceName>MainDataSource</DataSourceName><CommandText>/* Local object data */</CommandText></Query><Fields><Field Name="MonthLabel"><DataField>MonthLabel</DataField><rd:TypeName>System.String</rd:TypeName></Field><Field Name="MonthSort"><DataField>MonthSort</DataField><rd:TypeName>System.Int32</rd:TypeName></Field><Field Name="PeriodLabel"><DataField>PeriodLabel</DataField><rd:TypeName>System.String</rd:TypeName></Field><Field Name="PeriodSort"><DataField>PeriodSort</DataField><rd:TypeName>System.Int32</rd:TypeName></Field><Field Name="CaseCount"><DataField>CaseCount</DataField><rd:TypeName>System.Int32</rd:TypeName></Field></Fields></DataSet>
+    <DataSet Name="OverallByYear"><Query><DataSourceName>MainDataSource</DataSourceName><CommandText>/* Local object data */</CommandText></Query><Fields><Field Name="OverallCategory"><DataField>OverallCategory</DataField><rd:TypeName>System.String</rd:TypeName></Field><Field Name="OverallPeriodLabel"><DataField>OverallPeriodLabel</DataField><rd:TypeName>System.String</rd:TypeName></Field><Field Name="OverallPeriodSort"><DataField>OverallPeriodSort</DataField><rd:TypeName>System.Int32</rd:TypeName></Field><Field Name="OverallCaseCount"><DataField>OverallCaseCount</DataField><rd:TypeName>System.Int32</rd:TypeName></Field></Fields></DataSet>
+    <DataSet Name="OverallTrendByYear"><Query><DataSourceName>MainDataSource</DataSourceName><CommandText>/* Local object data */</CommandText></Query><Fields><Field Name="MonthLabel"><DataField>MonthLabel</DataField><rd:TypeName>System.String</rd:TypeName></Field><Field Name="MonthSort"><DataField>MonthSort</DataField><rd:TypeName>System.Int32</rd:TypeName></Field><Field Name="PeriodLabel"><DataField>PeriodLabel</DataField><rd:TypeName>System.String</rd:TypeName></Field><Field Name="PeriodSort"><DataField>PeriodSort</DataField><rd:TypeName>System.Int32</rd:TypeName></Field><Field Name="CaseCount"><DataField>CaseCount</DataField><rd:TypeName>System.Int32</rd:TypeName></Field></Fields></DataSet>
+    <DataSet Name="CustomerByYear"><Query><DataSourceName>MainDataSource</DataSourceName><CommandText>/* Local object data */</CommandText></Query><Fields><Field Name="CustomerCategory"><DataField>CustomerCategory</DataField><rd:TypeName>System.String</rd:TypeName></Field><Field Name="CustomerPeriodLabel"><DataField>CustomerPeriodLabel</DataField><rd:TypeName>System.String</rd:TypeName></Field><Field Name="CustomerPeriodSort"><DataField>CustomerPeriodSort</DataField><rd:TypeName>System.Int32</rd:TypeName></Field><Field Name="CustomerCaseCount"><DataField>CustomerCaseCount</DataField><rd:TypeName>System.Int32</rd:TypeName></Field></Fields></DataSet>
+    <DataSet Name="CustomerTrendByYear"><Query><DataSourceName>MainDataSource</DataSourceName><CommandText>/* Local object data */</CommandText></Query><Fields><Field Name="MonthLabel"><DataField>MonthLabel</DataField><rd:TypeName>System.String</rd:TypeName></Field><Field Name="MonthSort"><DataField>MonthSort</DataField><rd:TypeName>System.Int32</rd:TypeName></Field><Field Name="PeriodLabel"><DataField>PeriodLabel</DataField><rd:TypeName>System.String</rd:TypeName></Field><Field Name="PeriodSort"><DataField>PeriodSort</DataField><rd:TypeName>System.Int32</rd:TypeName></Field><Field Name="CaseCount"><DataField>CaseCount</DataField><rd:TypeName>System.Int32</rd:TypeName></Field></Fields></DataSet>
+    <DataSet Name="SheppeeByYear"><Query><DataSourceName>MainDataSource</DataSourceName><CommandText>/* Local object data */</CommandText></Query><Fields><Field Name="SheppeeCategory"><DataField>SheppeeCategory</DataField><rd:TypeName>System.String</rd:TypeName></Field><Field Name="SheppeePeriodLabel"><DataField>SheppeePeriodLabel</DataField><rd:TypeName>System.String</rd:TypeName></Field><Field Name="SheppeePeriodSort"><DataField>SheppeePeriodSort</DataField><rd:TypeName>System.Int32</rd:TypeName></Field><Field Name="SheppeeCaseCount"><DataField>SheppeeCaseCount</DataField><rd:TypeName>System.Int32</rd:TypeName></Field></Fields></DataSet>
+    <DataSet Name="SheppeeTrendByYear"><Query><DataSourceName>MainDataSource</DataSourceName><CommandText>/* Local object data */</CommandText></Query><Fields><Field Name="MonthLabel"><DataField>MonthLabel</DataField><rd:TypeName>System.String</rd:TypeName></Field><Field Name="MonthSort"><DataField>MonthSort</DataField><rd:TypeName>System.Int32</rd:TypeName></Field><Field Name="PeriodLabel"><DataField>PeriodLabel</DataField><rd:TypeName>System.String</rd:TypeName></Field><Field Name="PeriodSort"><DataField>PeriodSort</DataField><rd:TypeName>System.Int32</rd:TypeName></Field><Field Name="CaseCount"><DataField>CaseCount</DataField><rd:TypeName>System.Int32</rd:TypeName></Field></Fields></DataSet>
+    <DataSet Name="SupplierByYear"><Query><DataSourceName>MainDataSource</DataSourceName><CommandText>/* Local object data */</CommandText></Query><Fields><Field Name="SupplierCategory"><DataField>SupplierCategory</DataField><rd:TypeName>System.String</rd:TypeName></Field><Field Name="SupplierPeriodLabel"><DataField>SupplierPeriodLabel</DataField><rd:TypeName>System.String</rd:TypeName></Field><Field Name="SupplierPeriodSort"><DataField>SupplierPeriodSort</DataField><rd:TypeName>System.Int32</rd:TypeName></Field><Field Name="SupplierCaseCount"><DataField>SupplierCaseCount</DataField><rd:TypeName>System.Int32</rd:TypeName></Field></Fields></DataSet>
+    <DataSet Name="SupplierTrendByYear"><Query><DataSourceName>MainDataSource</DataSourceName><CommandText>/* Local object data */</CommandText></Query><Fields><Field Name="MonthLabel"><DataField>MonthLabel</DataField><rd:TypeName>System.String</rd:TypeName></Field><Field Name="MonthSort"><DataField>MonthSort</DataField><rd:TypeName>System.Int32</rd:TypeName></Field><Field Name="PeriodLabel"><DataField>PeriodLabel</DataField><rd:TypeName>System.String</rd:TypeName></Field><Field Name="PeriodSort"><DataField>PeriodSort</DataField><rd:TypeName>System.Int32</rd:TypeName></Field><Field Name="CaseCount"><DataField>CaseCount</DataField><rd:TypeName>System.Int32</rd:TypeName></Field></Fields></DataSet>
+    <DataSet Name="InconclusiveByYear"><Query><DataSourceName>MainDataSource</DataSourceName><CommandText>/* Local object data */</CommandText></Query><Fields><Field Name="InconclusiveCategory"><DataField>InconclusiveCategory</DataField><rd:TypeName>System.String</rd:TypeName></Field><Field Name="InconclusivePeriodLabel"><DataField>InconclusivePeriodLabel</DataField><rd:TypeName>System.String</rd:TypeName></Field><Field Name="InconclusivePeriodSort"><DataField>InconclusivePeriodSort</DataField><rd:TypeName>System.Int32</rd:TypeName></Field><Field Name="InconclusiveCaseCount"><DataField>InconclusiveCaseCount</DataField><rd:TypeName>System.Int32</rd:TypeName></Field></Fields></DataSet>
+    <DataSet Name="InconclusiveTrendByYear"><Query><DataSourceName>MainDataSource</DataSourceName><CommandText>/* Local object data */</CommandText></Query><Fields><Field Name="MonthLabel"><DataField>MonthLabel</DataField><rd:TypeName>System.String</rd:TypeName></Field><Field Name="MonthSort"><DataField>MonthSort</DataField><rd:TypeName>System.Int32</rd:TypeName></Field><Field Name="PeriodLabel"><DataField>PeriodLabel</DataField><rd:TypeName>System.String</rd:TypeName></Field><Field Name="PeriodSort"><DataField>PeriodSort</DataField><rd:TypeName>System.Int32</rd:TypeName></Field><Field Name="CaseCount"><DataField>CaseCount</DataField><rd:TypeName>System.Int32</rd:TypeName></Field></Fields></DataSet>
+    <DataSet Name="InstallationByYear"><Query><DataSourceName>MainDataSource</DataSourceName><CommandText>/* Local object data */</CommandText></Query><Fields><Field Name="InstallationCategory"><DataField>InstallationCategory</DataField><rd:TypeName>System.String</rd:TypeName></Field><Field Name="InstallationPeriodLabel"><DataField>InstallationPeriodLabel</DataField><rd:TypeName>System.String</rd:TypeName></Field><Field Name="InstallationPeriodSort"><DataField>InstallationPeriodSort</DataField><rd:TypeName>System.Int32</rd:TypeName></Field><Field Name="InstallationCaseCount"><DataField>InstallationCaseCount</DataField><rd:TypeName>System.Int32</rd:TypeName></Field></Fields></DataSet>
+    <DataSet Name="InstallationTrendByYear"><Query><DataSourceName>MainDataSource</DataSourceName><CommandText>/* Local object data */</CommandText></Query><Fields><Field Name="MonthLabel"><DataField>MonthLabel</DataField><rd:TypeName>System.String</rd:TypeName></Field><Field Name="MonthSort"><DataField>MonthSort</DataField><rd:TypeName>System.Int32</rd:TypeName></Field><Field Name="PeriodLabel"><DataField>PeriodLabel</DataField><rd:TypeName>System.String</rd:TypeName></Field><Field Name="PeriodSort"><DataField>PeriodSort</DataField><rd:TypeName>System.Int32</rd:TypeName></Field><Field Name="CaseCount"><DataField>CaseCount</DataField><rd:TypeName>System.Int32</rd:TypeName></Field></Fields></DataSet>
+    <DataSet Name="WearAndTearByYear"><Query><DataSourceName>MainDataSource</DataSourceName><CommandText>/* Local object data */</CommandText></Query><Fields><Field Name="WearAndTearCategory"><DataField>WearAndTearCategory</DataField><rd:TypeName>System.String</rd:TypeName></Field><Field Name="WearAndTearPeriodLabel"><DataField>WearAndTearPeriodLabel</DataField><rd:TypeName>System.String</rd:TypeName></Field><Field Name="WearAndTearPeriodSort"><DataField>WearAndTearPeriodSort</DataField><rd:TypeName>System.Int32</rd:TypeName></Field><Field Name="WearAndTearCaseCount"><DataField>WearAndTearCaseCount</DataField><rd:TypeName>System.Int32</rd:TypeName></Field></Fields></DataSet>
+    <DataSet Name="WearAndTearTrendByYear"><Query><DataSourceName>MainDataSource</DataSourceName><CommandText>/* Local object data */</CommandText></Query><Fields><Field Name="MonthLabel"><DataField>MonthLabel</DataField><rd:TypeName>System.String</rd:TypeName></Field><Field Name="MonthSort"><DataField>MonthSort</DataField><rd:TypeName>System.Int32</rd:TypeName></Field><Field Name="PeriodLabel"><DataField>PeriodLabel</DataField><rd:TypeName>System.String</rd:TypeName></Field><Field Name="PeriodSort"><DataField>PeriodSort</DataField><rd:TypeName>System.Int32</rd:TypeName></Field><Field Name="CaseCount"><DataField>CaseCount</DataField><rd:TypeName>System.Int32</rd:TypeName></Field></Fields></DataSet>
+  </DataSets>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportID>4cfbd78e-4016-4fe0-a86e-7b849ad45f29</rd:ReportID>
+</Report>
+
+
+
+
+
+
+
+
+
+
+
