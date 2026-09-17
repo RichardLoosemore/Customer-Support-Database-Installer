@@ -1,0 +1,28 @@
+/* 
+   Diagnostic Query: Check if fault normalization has data
+   Run this to verify machines, faults, and mappings exist
+*/
+
+-- Check 1: How many machines exist?
+PRINT 'CHECK 1: Machines in dbo.Machine'
+SELECT COUNT(*) as MachineCount FROM [dbo].[Machine]
+SELECT TOP 10 Machine_ID, Machine_Name FROM [dbo].[Machine] ORDER BY Machine_ID
+
+-- Check 2: How many master faults exist?
+PRINT 'CHECK 2: Faults in dbo.Fault_Grouping_Master'
+SELECT COUNT(*) as FaultCount FROM [dbo].[Fault_Grouping_Master]
+SELECT * FROM [dbo].[Fault_Grouping_Master] ORDER BY Fault_Master_ID
+
+-- Check 3: How many machine-fault mappings exist?
+PRINT 'CHECK 3: Mappings in dbo.Machine_Fault_Mapping'
+SELECT COUNT(*) as MappingCount FROM [dbo].[Machine_Fault_Mapping]
+SELECT TOP 20 mfm.Machine_Fault_ID, mfm.Fault_Machine_ID, m.Machine_Name, mfm.Fault_Master_ID, fgm.Fault_Group
+FROM [dbo].[Machine_Fault_Mapping] mfm
+LEFT JOIN [dbo].[Machine] m ON mfm.Fault_Machine_ID = m.Machine_ID
+LEFT JOIN [dbo].[Fault_Grouping_Master] fgm ON mfm.Fault_Master_ID = fgm.Fault_Master_ID
+ORDER BY mfm.Fault_Machine_ID
+
+-- Check 4: Verify backward compatibility - old Fault_Grouping table unchanged
+PRINT 'CHECK 4: Original Fault_Grouping table (should still have data)'
+SELECT COUNT(*) as OldFaultGroupingCount FROM [dbo].[Fault_Grouping]
+SELECT TOP 10 * FROM [dbo].[Fault_Grouping]
