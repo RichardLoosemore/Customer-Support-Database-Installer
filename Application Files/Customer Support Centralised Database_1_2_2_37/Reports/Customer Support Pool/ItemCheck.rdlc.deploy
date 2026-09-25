@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2008/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <Body>
+	<ReportItems>
+	  <Textbox Name="TitleTextbox">
+		<CanGrow>true</CanGrow>
+		<KeepTogether>true</KeepTogether>
+		<Paragraphs>
+		  <Paragraph>
+			<TextRuns>
+			  <TextRun>
+				<Value>Item Check</Value>
+				<Style>
+				  <FontSize>12pt</FontSize>
+				  <FontWeight>Bold</FontWeight>
+				</Style>
+			  </TextRun>
+			</TextRuns>
+			<Style />
+		  </Paragraph>
+		</Paragraphs>
+		<Top>0.15in</Top>
+		<Left>0.25in</Left>
+		<Height>0.3in</Height>
+		<Width>6.9in</Width>
+		<Style>
+		  <FontFamily>Segoe UI</FontFamily>
+		</Style>
+	  </Textbox>
+	  <Textbox Name="RangeText">
+		<CanGrow>true</CanGrow>
+		<KeepTogether>true</KeepTogether>
+		<Paragraphs>
+		  <Paragraph>
+			<TextRuns>
+			  <TextRun>
+				<Value>=IIf(IsNothing(First(Fields!DateRangeText.Value, "CompanyHeader")), "", First(Fields!DateRangeText.Value, "CompanyHeader"))</Value>
+				<Style>
+				  <FontSize>8.5pt</FontSize>
+				</Style>
+			  </TextRun>
+			</TextRuns>
+			<Style />
+		  </Paragraph>
+		</Paragraphs>
+		<Top>0.48in</Top>
+		<Left>0.25in</Left>
+		<Height>0.2in</Height>
+		<Width>6.9in</Width>
+		<Style>
+		  <FontFamily>Segoe UI</FontFamily>
+		</Style>
+	  </Textbox>
+	  <Textbox Name="Hint">
+		<CanGrow>true</CanGrow>
+		<KeepTogether>true</KeepTogether>
+		<Paragraphs>
+		  <Paragraph>
+			<TextRuns>
+			  <TextRun>
+				<Value>Items currently in support pool.</Value>
+				<Style>
+				  <FontSize>8pt</FontSize>
+				</Style>
+			  </TextRun>
+			</TextRuns>
+			<Style />
+		  </Paragraph>
+		</Paragraphs>
+		<Top>0.68in</Top>
+		<Left>0.25in</Left>
+		<Height>0.16in</Height>
+		<Width>6.9in</Width>
+		<Style>
+		  <FontFamily>Segoe UI</FontFamily>
+		</Style>
+	  </Textbox>
+	</ReportItems>
+	<Height>0.95in</Height>
+	<Style />
+  </Body>
+  <Width>8.25in</Width>
+  <Page>
+	<PageHeader>
+	  <Height>1in</Height>
+	  <PrintOnFirstPage>true</PrintOnFirstPage>
+	  <PrintOnLastPage>true</PrintOnLastPage>
+	  <ReportItems>
+		<Image Name="CompanyLogoImage">
+		  <Source>Database</Source>
+		  <Value>=First(Fields!LogoBytes.Value, "CompanyHeader")</Value>
+		  <MIMEType>image/png</MIMEType>
+		  <Sizing>FitProportional</Sizing>
+		  <Top>0.05in</Top>
+		  <Left>0.25in</Left>
+		  <Height>0.8in</Height>
+		  <Width>2in</Width>
+		  <Style />
+		</Image>
+	  </ReportItems>
+	  <Style />
+	</PageHeader>
+	<PageFooter>
+	  <Height>0.5in</Height>
+	  <PrintOnFirstPage>true</PrintOnFirstPage>
+	  <PrintOnLastPage>true</PrintOnLastPage>
+	  <ReportItems>
+		<Textbox Name="PrintDateTime">
+		  <CanGrow>true</CanGrow>
+		  <KeepTogether>true</KeepTogether>
+		  <Paragraphs>
+			<Paragraph>
+			  <TextRuns>
+				<TextRun>
+				  <Value>="Date printed: " &amp; Today() &amp; "    Time printed: " &amp; TimeOfDay</Value>
+				  <Style>
+					<FontSize>8pt</FontSize>
+				  </Style>
+				</TextRun>
+			  </TextRuns>
+			  <Style />
+			</Paragraph>
+		  </Paragraphs>
+		  <Top>0.25in</Top>
+		  <Left>0.25in</Left>
+		  <Height>0.25in</Height>
+		  <Width>3.5in</Width>
+		  <Style>
+			<FontFamily>Segoe UI</FontFamily>
+		  </Style>
+		</Textbox>
+		<Textbox Name="PageNumbers">
+		  <CanGrow>true</CanGrow>
+		  <KeepTogether>true</KeepTogether>
+		  <Paragraphs>
+			<Paragraph>
+			  <TextRuns>
+				<TextRun><Value>Page </Value><Style /></TextRun>
+				<TextRun><Value>=Globals!PageNumber</Value><Style /></TextRun>
+				<TextRun><Value> of </Value><Style /></TextRun>
+				<TextRun><Value>=Globals!TotalPages</Value><Style /></TextRun>
+			  </TextRuns>
+			  <Style>
+				<TextAlign>Right</TextAlign>
+			  </Style>
+			</Paragraph>
+		  </Paragraphs>
+		  <Top>0.25in</Top>
+		  <Left>4.75in</Left>
+		  <Height>0.25in</Height>
+		  <Width>2.75in</Width>
+		  <Style />
+		</Textbox>
+	  </ReportItems>
+	  <Style />
+	</PageFooter>
+	<PageWidth>8.27in</PageWidth>
+	<PageHeight>11.69in</PageHeight>
+	<LeftMargin>0.5in</LeftMargin>
+	<RightMargin>0.5in</RightMargin>
+	<TopMargin>0.5in</TopMargin>
+	<BottomMargin>0.5in</BottomMargin>
+	<Style />
+  </Page>
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+	<DataSource Name="MainDataSource">
+	  <ConnectionProperties>
+		<DataProvider>System.Data.DataSet</DataProvider>
+		<ConnectString />
+	  </ConnectionProperties>
+	  <rd:DataSourceID>4a9a7c8f-1f4f-4348-9348-59281150a2a1</rd:DataSourceID>
+	</DataSource>
+  </DataSources>
+  <DataSets>
+	<DataSet Name="CompanyHeader">
+	  <Query>
+		<DataSourceName>MainDataSource</DataSourceName>
+		<CommandText>/* Local object data */</CommandText>
+	  </Query>
+	  <Fields>
+		<Field Name="CompanyName"><DataField>CompanyName</DataField><rd:TypeName>System.String</rd:TypeName></Field>
+		<Field Name="LogoBytes"><DataField>LogoBytes</DataField><rd:TypeName>System.Byte[]</rd:TypeName></Field>
+		<Field Name="DateRangeText"><DataField>DateRangeText</DataField><rd:TypeName>System.String</rd:TypeName></Field>
+	  </Fields>
+	</DataSet>
+	<DataSet Name="ItemSecurityItems">
+	  <Query>
+		<DataSourceName>MainDataSource</DataSourceName>
+		<CommandText>/* Local object data */</CommandText>
+	  </Query>
+	  <Fields>
+		<Field Name="CspId"><DataField>CspId</DataField><rd:TypeName>System.Int32</rd:TypeName></Field>
+		<Field Name="PartName"><DataField>PartName</DataField><rd:TypeName>System.String</rd:TypeName></Field>
+		<Field Name="PartNumber"><DataField>PartNumber</DataField><rd:TypeName>System.String</rd:TypeName></Field>
+		<Field Name="SerialNumber"><DataField>SerialNumber</DataField><rd:TypeName>System.String</rd:TypeName></Field>
+		<Field Name="Status"><DataField>Status</DataField><rd:TypeName>System.String</rd:TypeName></Field>
+		<Field Name="ActiveText"><DataField>ActiveText</DataField><rd:TypeName>System.String</rd:TypeName></Field>
+		<Field Name="ScrapText"><DataField>ScrapText</DataField><rd:TypeName>System.String</rd:TypeName></Field>
+		<Field Name="SheppeeLocation"><DataField>SheppeeLocation</DataField><rd:TypeName>System.String</rd:TypeName></Field>
+		<Field Name="CustomerLocation"><DataField>CustomerLocation</DataField><rd:TypeName>System.String</rd:TypeName></Field>
+		<Field Name="SupplierLocation"><DataField>SupplierLocation</DataField><rd:TypeName>System.String</rd:TypeName></Field>
+		<Field Name="LastTestDateText"><DataField>LastTestDateText</DataField><rd:TypeName>System.String</rd:TypeName></Field>
+	  </Fields>
+	</DataSet>
+  </DataSets>
+  <Language>en-GB</Language>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportID>2f809c1b-77b5-4021-84db-8f47f1240a01</rd:ReportID>
+</Report>
