@@ -1,0 +1,119 @@
+/* 
+   Migration: Normalize Fault_Grouping to support machine-specific faults
+   Date: 2026-07-XX
+   Purpose: Create master fault table and machine-to-fault mapping to eliminate duplicates
+			while maintaining backward compatibility with existing Case references
+
+   Backward Compatibility: 
+   - Existing Fault_Grouping table remains unchanged during transition
+   - Cases.Fault_Group_ID continues to reference Fault_Grouping.Fault_ID
+   - After testing, old Fault_Grouping rows can be archived, not deleted
+*/
+
+-- ============================================================================
+-- STEP 1: Create Fault_Grouping_Master table (unique faults, no machine link)
+-- ============================================================================
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Fault_Grouping_Master]') AND type in (N'U'))
+BEGIN
+	CREATE TABLE [dbo].[Fault_Grouping_Master](
+		[Fault_Master_ID] [int] IDENTITY(1,1) NOT NULL,
+		[Fault_Group] [nvarchar](20) NOT NULL,
+		[IsActive] [bit] NOT NULL DEFAULT (1),
+		[CreatedDate] [datetime] NOT NULL DEFAULT (GETDATE()),
+		CONSTRAINT [PK_Fault_Grouping_Master] PRIMARY KEY CLUSTERED 
+		(
+			[Fault_Master_ID] ASC
+		)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY],
+		CONSTRAINT [UQ_Fault_Group] UNIQUE 
+		(
+			[Fault_Group] ASC
+		)
+	) ON [PRIMARY]
+END
+GO
+
+-- ============================================================================
+-- STEP 2: Create Machine_Fault_Mapping table (many-to-many relationship)
+-- ============================================================================
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Machine_Fault_Mapping]') AND type in (N'U'))
+BEGIN
+	CREATE TABLE [dbo].[Machine_Fault_Mapping](
+		[Machine_Fault_ID] [int] IDENTITY(1,1) NOT NULL,
+		[Fault_Machine_ID] [int] NOT NULL,
+		[Fault_Master_ID] [int] NOT NULL,
+		[CreatedDate] [datetime] NOT NULL DEFAULT (GETDATE()),
+		CONSTRAINT [PK_Machine_Fault_Mapping] PRIMARY KEY CLUSTERED 
+		(
+			[Machine_Fault_ID] ASC
+		)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+	) ON [PRIMARY]
+END
+GO
+
+-- Add foreign key to Machine table
+IF NOT EXISTS (SELECT * FROM sys.foreign_keys WHERE object_id = OBJECT_ID(N'[dbo].[FK_Machine_Fault_Mapping_Machine]') AND parent_object_id = OBJECT_ID(N'[dbo].[Machine_Fault_Mapping]'))
+BEGIN
+	ALTER TABLE [dbo].[Machine_Fault_Mapping] WITH CHECK ADD CONSTRAINT [FK_Machine_Fault_Mapping_Machine] FOREIGN KEY([Fault_Machine_ID])
+	REFERENCES [dbo].[Machine] ([Machine_ID])
+	ALTER TABLE [dbo].[Machine_Fault_Mapping] CHECK CONSTRAINT [FK_Machine_Fault_Mapping_Machine]
+END
+GO
+
+-- Add foreign key to Fault_Grouping_Master table
+IF NOT EXISTS (SELECT * FROM sys.foreign_keys WHERE object_id = OBJECT_ID(N'[dbo].[FK_Machine_Fault_Mapping_Fault_Master]') AND parent_object_id = OBJECT_ID(N'[dbo].[Machine_Fault_Mapping]'))
+BEGIN
+	ALTER TABLE [dbo].[Machine_Fault_Mapping] WITH CHECK ADD CONSTRAINT [FK_Machine_Fault_Mapping_Fault_Master] FOREIGN KEY([Fault_Master_ID])
+	REFERENCES [dbo].[Fault_Grouping_Master] ([Fault_Master_ID])
+	ALTER TABLE [dbo].[Machine_Fault_Mapping] CHECK CONSTRAINT [FK_Machine_Fault_Mapping_Fault_Master]
+END
+GO
+
+-- Add unique constraint to prevent duplicate machine-fault pairs
+IF NOT EXISTS (SELECT * FROM sys.indexes WHERE object_id = OBJECT_ID(N'[dbo].[Machine_Fault_Mapping]') AND name = 'UQ_Machine_Fault')
+BEGIN
+	CREATE UNIQUE NONCLUSTERED INDEX [UQ_Machine_Fault] ON [dbo].[Machine_Fault_Mapping]
+	(
+		[Fault_Machine_ID] ASC,
+		[Fault_Master_ID] ASC
+	)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+END
+GO
+
+-- ============================================================================
+-- STEP 3: Populate Fault_Grouping_Master with unique faults
+-- ============================================================================
+-- Insert unique fault names from existing Fault_Grouping table
+INSERT INTO [dbo].[Fault_Grouping_Master] ([Fault_Group])
+SELECT DISTINCT [Fault_Group]
+FROM [dbo].[Fault_Grouping]
+WHERE [Fault_Group] IS NOT NULL
+  AND NOT EXISTS (
+	SELECT 1 
+	FROM [dbo].[Fault_Grouping_Master] 
+	WHERE [Fault_Grouping_Master].[Fault_Group] = [Fault_Grouping].[Fault_Group]
+  )
+GO
+
+-- ============================================================================
+-- STEP 4: Populate Machine_Fault_Mapping from existing Fault_Grouping
+-- ============================================================================
+-- This preserves all existing machine-to-fault associations
+INSERT INTO [dbo].[Machine_Fault_Mapping] ([Fault_Machine_ID], [Fault_Master_ID])
+SELECT DISTINCT 
+	fg.[Fault_Machine_ID],
+	fgm.[Fault_Master_ID]
+FROM [dbo].[Fault_Grouping] fg
+INNER JOIN [dbo].[Fault_Grouping_Master] fgm 
+	ON fg.[Fault_Group] = fgm.[Fault_Group]
+WHERE NOT EXISTS (
+	SELECT 1 
+	FROM [dbo].[Machine_Fault_Mapping] mfm
+	WHERE mfm.[Fault_Machine_ID] = fg.[Fault_Machine_ID]
+	  AND mfm.[Fault_Master_ID] = fgm.[Fault_Master_ID]
+  )
+GO
+
+PRINT 'Migration completed successfully.'
+PRINT 'New tables created: Fault_Grouping_Master, Machine_Fault_Mapping'
+PRINT 'Backward compatibility maintained: Fault_Grouping table unchanged'
+GO
