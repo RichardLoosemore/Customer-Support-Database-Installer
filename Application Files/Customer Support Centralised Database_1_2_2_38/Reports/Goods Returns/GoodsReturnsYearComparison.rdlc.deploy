@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2008/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="MainDataSource">
+      <ConnectionProperties>
+        <DataProvider>System.Data.DataSet</DataProvider>
+        <ConnectString />
+      </ConnectionProperties>
+      <rd:DataSourceID>22222222-2222-2222-2222-222222222222</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="CompanyHeader"><Query><DataSourceName>MainDataSource</DataSourceName><CommandText>/* Local object data */</CommandText></Query><Fields>
+      <Field Name="CompanyName"><DataField>CompanyName</DataField><rd:TypeName>System.String</rd:TypeName></Field>
+      <Field Name="PrimaryColour"><DataField>PrimaryColour</DataField><rd:TypeName>System.String</rd:TypeName></Field>
+      <Field Name="LogoBytes"><DataField>LogoBytes</DataField><rd:TypeName>System.Byte[]</rd:TypeName></Field>
+    </Fields></DataSet>
+    <DataSet Name="ComparisonSummary"><Query><DataSourceName>MainDataSource</DataSourceName><CommandText>/* Local object data */</CommandText></Query><Fields>
+      <Field Name="ReportTitle"><DataField>ReportTitle</DataField><rd:TypeName>System.String</rd:TypeName></Field>
+      <Field Name="DateRangeText"><DataField>DateRangeText</DataField><rd:TypeName>System.String</rd:TypeName></Field>
+      <Field Name="OverviewText"><DataField>OverviewText</DataField><rd:TypeName>System.String</rd:TypeName></Field>
+      <Field Name="ThroughputSummaryText"><DataField>ThroughputSummaryText</DataField><rd:TypeName>System.String</rd:TypeName></Field>
+      <Field Name="StatusSummaryText"><DataField>StatusSummaryText</DataField><rd:TypeName>System.String</rd:TypeName></Field>
+      <Field Name="FaultSummaryText"><DataField>FaultSummaryText</DataField><rd:TypeName>System.String</rd:TypeName></Field>
+      <Field Name="CustomerSummaryText"><DataField>CustomerSummaryText</DataField><rd:TypeName>System.String</rd:TypeName></Field>
+      <Field Name="DetailSummaryText"><DataField>DetailSummaryText</DataField><rd:TypeName>System.String</rd:TypeName></Field>
+    </Fields></DataSet>
+    <DataSet Name="VolumeChartImage"><Query><DataSourceName>MainDataSource</DataSourceName><CommandText>/* Local object data */</CommandText></Query><Fields><Field Name="ImageBytes"><DataField>ImageBytes</DataField><rd:TypeName>System.Byte[]</rd:TypeName></Field></Fields></DataSet>
+    <DataSet Name="StatusChartImage"><Query><DataSourceName>MainDataSource</DataSourceName><CommandText>/* Local object data */</CommandText></Query><Fields><Field Name="ImageBytes"><DataField>ImageBytes</DataField><rd:TypeName>System.Byte[]</rd:TypeName></Field></Fields></DataSet>
+    <DataSet Name="FaultChartImage"><Query><DataSourceName>MainDataSource</DataSourceName><CommandText>/* Local object data */</CommandText></Query><Fields><Field Name="ImageBytes"><DataField>ImageBytes</DataField><rd:TypeName>System.Byte[]</rd:TypeName></Field></Fields></DataSet>
+    <DataSet Name="CustomerChartImage"><Query><DataSourceName>MainDataSource</DataSourceName><CommandText>/* Local object data */</CommandText></Query><Fields><Field Name="ImageBytes"><DataField>ImageBytes</DataField><rd:TypeName>System.Byte[]</rd:TypeName></Field></Fields></DataSet>
+    <DataSet Name="TopCustomersCurrent"><Query><DataSourceName>MainDataSource</DataSourceName><CommandText>/* Local object data */</CommandText></Query><Fields>
+      <Field Name="Customer"><DataField>Customer</DataField><rd:TypeName>System.String</rd:TypeName></Field>
+      <Field Name="TotalGoodsReturns"><DataField>TotalGoodsReturns</DataField><rd:TypeName>System.Int32</rd:TypeName></Field>
+      <Field Name="TotalItems"><DataField>TotalItems</DataField><rd:TypeName>System.Int32</rd:TypeName></Field>
+    </Fields></DataSet>
+    <DataSet Name="CurrentPeriodDetails"><Query><DataSourceName>MainDataSource</DataSourceName><CommandText>/* Local object data */</CommandText></Query><Fields>
+      <Field Name="GRNumber"><DataField>GRNumber</DataField><rd:TypeName>System.Int32</rd:TypeName></Field>
+      <Field Name="DateRecorded"><DataField>DateRecorded</DataField><rd:TypeName>System.DateTime</rd:TypeName></Field>
+      <Field Name="DateClosed"><DataField>DateClosed</DataField><rd:TypeName>System.DateTime</rd:TypeName></Field>
+      <Field Name="Status"><DataField>Status</DataField><rd:TypeName>System.String</rd:TypeName></Field>
+      <Field Name="Customer"><DataField>Customer</DataField><rd:TypeName>System.String</rd:TypeName></Field>
+      <Field Name="TotalItems"><DataField>TotalItems</DataField><rd:TypeName>System.Int32</rd:TypeName></Field>
+      <Field Name="OpenItems"><DataField>OpenItems</DataField><rd:TypeName>System.Int32</rd:TypeName></Field>
+      <Field Name="StillRunning"><DataField>StillRunning</DataField><rd:TypeName>System.Boolean</rd:TypeName></Field>
+      <Field Name="EarliestItemDespatch"><DataField>EarliestItemDespatch</DataField><rd:TypeName>System.DateTime</rd:TypeName></Field>
+      <Field Name="DaysRecordToFirstDespatch"><DataField>DaysRecordToFirstDespatch</DataField><rd:TypeName>System.Double</rd:TypeName></Field>
+      <Field Name="DaysRecordToClose"><DataField>DaysRecordToClose</DataField><rd:TypeName>System.Double</rd:TypeName></Field>
+      <Field Name="StatusNote"><DataField>StatusNote</DataField><rd:TypeName>System.String</rd:TypeName></Field>
+    </Fields></DataSet>
+  </DataSets>
+  <Body>
+    <ReportItems>
+      <Rectangle Name="Page1Rectangle">
+        <ReportItems>
+          <Textbox Name="TitleBox"><CanGrow>true</CanGrow><KeepTogether>true</KeepTogether><Paragraphs><Paragraph><TextRuns><TextRun><Value>=First(Fields!ReportTitle.Value, "ComparisonSummary")</Value><Style><FontSize>18pt</FontSize><FontWeight>Bold</FontWeight></Style></TextRun></TextRuns><Style><TextAlign>Center</TextAlign></Style></Paragraph></Paragraphs><Top>0.45in</Top><Left>1.0in</Left><Height>0.35in</Height><Width>5.4in</Width><Style><FontFamily>Segoe UI</FontFamily></Style></Textbox>
+          <Textbox Name="DateRangeBox"><CanGrow>true</CanGrow><KeepTogether>true</KeepTogether><Paragraphs><Paragraph><TextRuns><TextRun><Value>=First(Fields!DateRangeText.Value, "ComparisonSummary")</Value><Style><FontSize>10pt</FontSize></Style></TextRun></TextRuns><Style><TextAlign>Center</TextAlign></Style></Paragraph></Paragraphs><Top>0.82in</Top><Left>1.35in</Left><Height>0.22in</Height><Width>4.7in</Width><Style><FontFamily>Segoe UI</FontFamily></Style></Textbox>
+          <Textbox Name="OverviewBox"><CanGrow>true</CanGrow><KeepTogether>true</KeepTogether><Paragraphs><Paragraph><TextRuns><TextRun><Value>=First(Fields!OverviewText.Value, "ComparisonSummary")</Value><Style><FontSize>9pt</FontSize></Style></TextRun></TextRuns><Style /></Paragraph></Paragraphs><Top>1.35in</Top><Left>0.25in</Left><Height>0.78in</Height><Width>7.05in</Width><Style><FontFamily>Segoe UI</FontFamily></Style></Textbox>
+          <Textbox Name="ThroughputSummaryBox"><CanGrow>true</CanGrow><KeepTogether>true</KeepTogether><Paragraphs><Paragraph><TextRuns><TextRun><Value>=First(Fields!ThroughputSummaryText.Value, "ComparisonSummary")</Value><Style><FontSize>9pt</FontSize></Style></TextRun></TextRuns><Style /></Paragraph></Paragraphs><Top>2.18in</Top><Left>0.25in</Left><Height>0.55in</Height><Width>7.05in</Width><Style><FontFamily>Segoe UI</FontFamily></Style></Textbox>
+          <Image Name="VolumeChartsImage"><Source>Database</Source><Value>=First(Fields!ImageBytes.Value, "VolumeChartImage")</Value><MIMEType>image/png</MIMEType><Sizing>FitProportional</Sizing><Top>2.85in</Top><Left>0.33in</Left><Height>5.3in</Height><Width>6.95in</Width><Style /></Image>
+        </ReportItems>
+        <KeepTogether>true</KeepTogether>
+        <Top>0in</Top><Left>0in</Left><Height>9.6in</Height><Width>7.35in</Width><Style />
+      </Rectangle>
+      <Rectangle Name="Page2Rectangle">
+        <ReportItems>
+          <Textbox Name="StatusHeading"><CanGrow>true</CanGrow><KeepTogether>true</KeepTogether><Paragraphs><Paragraph><TextRuns><TextRun><Value>What item statuses are appearing in goods returns?</Value><Style><FontSize>11pt</FontSize><FontWeight>Bold</FontWeight></Style></TextRun></TextRuns><Style /></Paragraph></Paragraphs><Top>0.1in</Top><Left>0.25in</Left><Height>0.25in</Height><Width>7.05in</Width><Style><FontFamily>Segoe UI</FontFamily></Style></Textbox>
+          <Textbox Name="StatusSummaryBox"><CanGrow>true</CanGrow><KeepTogether>true</KeepTogether><Paragraphs><Paragraph><TextRuns><TextRun><Value>=First(Fields!StatusSummaryText.Value, "ComparisonSummary")</Value><Style><FontSize>8pt</FontSize></Style></TextRun></TextRuns><Style /></Paragraph></Paragraphs><Top>0.5in</Top><Left>0.25in</Left><Height>0.6in</Height><Width>7.05in</Width><Style><FontFamily>Segoe UI</FontFamily></Style></Textbox>
+          <Image Name="StatusChartsImage"><Source>Database</Source><Value>=First(Fields!ImageBytes.Value, "StatusChartImage")</Value><MIMEType>image/png</MIMEType><Sizing>FitProportional</Sizing><Top>1.25in</Top><Left>0.33in</Left><Height>5.8in</Height><Width>6.95in</Width><Style /></Image>
+        </ReportItems>
+        <KeepTogether>true</KeepTogether>
+        <Top>9.7in</Top><Left>0in</Left><Height>9.6in</Height><Width>7.35in</Width><Style />
+      </Rectangle>
+      <Rectangle Name="Page3Rectangle">
+        <ReportItems>
+          <Textbox Name="FaultHeading"><CanGrow>true</CanGrow><KeepTogether>true</KeepTogether><Paragraphs><Paragraph><TextRuns><TextRun><Value>What faults are driving returned items?</Value><Style><FontSize>11pt</FontSize><FontWeight>Bold</FontWeight></Style></TextRun></TextRuns><Style /></Paragraph></Paragraphs><Top>0.1in</Top><Left>0.25in</Left><Height>0.25in</Height><Width>7.05in</Width><Style><FontFamily>Segoe UI</FontFamily></Style></Textbox>
+          <Textbox Name="FaultSummaryBox"><CanGrow>true</CanGrow><KeepTogether>true</KeepTogether><Paragraphs><Paragraph><TextRuns><TextRun><Value>=First(Fields!FaultSummaryText.Value, "ComparisonSummary")</Value><Style><FontSize>8pt</FontSize></Style></TextRun></TextRuns><Style /></Paragraph></Paragraphs><Top>0.5in</Top><Left>0.25in</Left><Height>0.6in</Height><Width>7.05in</Width><Style><FontFamily>Segoe UI</FontFamily></Style></Textbox>
+          <Image Name="FaultChartsImage"><Source>Database</Source><Value>=First(Fields!ImageBytes.Value, "FaultChartImage")</Value><MIMEType>image/png</MIMEType><Sizing>FitProportional</Sizing><Top>1.25in</Top><Left>0.33in</Left><Height>5.8in</Height><Width>6.95in</Width><Style /></Image>
+        </ReportItems>
+        <KeepTogether>true</KeepTogether>
+        <Top>19.4in</Top><Left>0in</Left><Height>9.6in</Height><Width>7.35in</Width><Style />
+      </Rectangle>
+      <Rectangle Name="Page4Rectangle">
+        <ReportItems>
+          <Textbox Name="CustomerHeading"><CanGrow>true</CanGrow><KeepTogether>true</KeepTogether><Paragraphs><Paragraph><TextRuns><TextRun><Value>Which customers are sending the most goods returns?</Value><Style><FontSize>11pt</FontSize><FontWeight>Bold</FontWeight></Style></TextRun></TextRuns><Style /></Paragraph></Paragraphs><Top>0.1in</Top><Left>0.25in</Left><Height>0.25in</Height><Width>7.05in</Width><Style><FontFamily>Segoe UI</FontFamily></Style></Textbox>
+          <Textbox Name="CustomerSummaryBox"><CanGrow>true</CanGrow><KeepTogether>true</KeepTogether><Paragraphs><Paragraph><TextRuns><TextRun><Value>=First(Fields!CustomerSummaryText.Value, "ComparisonSummary")</Value><Style><FontSize>8pt</FontSize></Style></TextRun></TextRuns><Style /></Paragraph></Paragraphs><Top>0.5in</Top><Left>0.25in</Left><Height>0.6in</Height><Width>7.05in</Width><Style><FontFamily>Segoe UI</FontFamily></Style></Textbox>
+          <Image Name="CustomerChartsImage"><Source>Database</Source><Value>=First(Fields!ImageBytes.Value, "CustomerChartImage")</Value><MIMEType>image/png</MIMEType><Sizing>FitProportional</Sizing><Top>1.2in</Top><Left>0.33in</Left><Height>3.75in</Height><Width>6.95in</Width><Style /></Image>
+          <Tablix Name="TopCustomersTablix">
+            <DataSetName>TopCustomersCurrent</DataSetName>
+            <Top>5.15in</Top><Left>0.33in</Left><Height>1.65in</Height><Width>6.95in</Width><Style><Border><Style>None</Style></Border></Style>
+            <TablixBody>
+              <TablixColumns><TablixColumn><Width>4.25in</Width></TablixColumn><TablixColumn><Width>1.25in</Width></TablixColumn><TablixColumn><Width>1.45in</Width></TablixColumn></TablixColumns>
+              <TablixRows>
+                <TablixRow><Height>0.26in</Height><TablixCells>
+                  <TablixCell><CellContents><Textbox Name="TopCustHdr1"><CanGrow>true</CanGrow><KeepTogether>true</KeepTogether><Paragraphs><Paragraph><TextRuns><TextRun><Value>Customer / Factory</Value><Style><FontWeight>Bold</FontWeight></Style></TextRun></TextRuns><Style /></Paragraph></Paragraphs><Style><Border><Style>None</Style></Border><BottomBorder><Style>Solid</Style><Color>#D7DFEA</Color></BottomBorder><FontFamily>Segoe UI</FontFamily><FontSize>8pt</FontSize></Style></Textbox></CellContents></TablixCell>
+                  <TablixCell><CellContents><Textbox Name="TopCustHdr2"><CanGrow>true</CanGrow><KeepTogether>true</KeepTogether><Paragraphs><Paragraph><TextRuns><TextRun><Value>GRs</Value><Style><FontWeight>Bold</FontWeight></Style></TextRun></TextRuns><Style><TextAlign>Right</TextAlign></Style></Paragraph></Paragraphs><Style><Border><Style>None</Style></Border><BottomBorder><Style>Solid</Style><Color>#D7DFEA</Color></BottomBorder><FontFamily>Segoe UI</FontFamily><FontSize>8pt</FontSize></Style></Textbox></CellContents></TablixCell>
+                  <TablixCell><CellContents><Textbox Name="TopCustHdr3"><CanGrow>true</CanGrow><KeepTogether>true</KeepTogether><Paragraphs><Paragraph><TextRuns><TextRun><Value>Items</Value><Style><FontWeight>Bold</FontWeight></Style></TextRun></TextRuns><Style><TextAlign>Right</TextAlign></Style></Paragraph></Paragraphs><Style><Border><Style>None</Style></Border><BottomBorder><Style>Solid</Style><Color>#D7DFEA</Color></BottomBorder><FontFamily>Segoe UI</FontFamily><FontSize>8pt</FontSize></Style></Textbox></CellContents></TablixCell>
+                </TablixCells></TablixRow>
+                <TablixRow><Height>0.24in</Height><TablixCells>
+                  <TablixCell><CellContents><Textbox Name="TopCustVal1"><CanGrow>true</CanGrow><KeepTogether>true</KeepTogether><Paragraphs><Paragraph><TextRuns><TextRun><Value>=Fields!Customer.Value</Value><Style /></TextRun></TextRuns><Style /></Paragraph></Paragraphs><Style><Border><Style>None</Style></Border><BottomBorder><Style>Solid</Style><Color>#EEF2F7</Color></BottomBorder><FontFamily>Segoe UI</FontFamily><FontSize>8pt</FontSize></Style></Textbox></CellContents></TablixCell>
+                  <TablixCell><CellContents><Textbox Name="TopCustVal2"><CanGrow>true</CanGrow><KeepTogether>true</KeepTogether><Paragraphs><Paragraph><TextRuns><TextRun><Value>=Fields!TotalGoodsReturns.Value</Value><Style /></TextRun></TextRuns><Style><TextAlign>Right</TextAlign></Style></Paragraph></Paragraphs><Style><Border><Style>None</Style></Border><BottomBorder><Style>Solid</Style><Color>#EEF2F7</Color></BottomBorder><FontFamily>Segoe UI</FontFamily><FontSize>8pt</FontSize></Style></Textbox></CellContents></TablixCell>
+                  <TablixCell><CellContents><Textbox Name="TopCustVal3"><CanGrow>true</CanGrow><KeepTogether>true</KeepTogether><Paragraphs><Paragraph><TextRuns><TextRun><Value>=Fields!TotalItems.Value</Value><Style /></TextRun></TextRuns><Style><TextAlign>Right</TextAlign></Style></Paragraph></Paragraphs><Style><Border><Style>None</Style></Border><BottomBorder><Style>Solid</Style><Color>#EEF2F7</Color></BottomBorder><FontFamily>Segoe UI</FontFamily><FontSize>8pt</FontSize></Style></Textbox></CellContents></TablixCell>
+                </TablixCells></TablixRow>
+              </TablixRows>
+            </TablixBody>
+            <TablixColumnHierarchy><TablixMembers><TablixMember /><TablixMember /><TablixMember /></TablixMembers></TablixColumnHierarchy>
+            <TablixRowHierarchy><TablixMembers><TablixMember /><TablixMember><Group Name="TopCustomersDetailGroup" /></TablixMember></TablixMembers></TablixRowHierarchy>
+          </Tablix>
+        </ReportItems>
+        <KeepTogether>true</KeepTogether>
+        <Top>29.1in</Top><Left>0in</Left><Height>9.6in</Height><Width>7.35in</Width><Style />
+      </Rectangle>
+      <Rectangle Name="Page5Rectangle">
+        <ReportItems>
+          <Textbox Name="DetailHeading"><CanGrow>true</CanGrow><KeepTogether>true</KeepTogether><Paragraphs><Paragraph><TextRuns><TextRun><Value>Detailed goods return breakdown</Value><Style><FontSize>11pt</FontSize><FontWeight>Bold</FontWeight></Style></TextRun></TextRuns><Style /></Paragraph></Paragraphs><Top>0.1in</Top><Left>0.25in</Left><Height>0.25in</Height><Width>7.05in</Width><Style><FontFamily>Segoe UI</FontFamily></Style></Textbox>
+          <Textbox Name="DetailSummaryBox"><CanGrow>true</CanGrow><KeepTogether>true</KeepTogether><Paragraphs><Paragraph><TextRuns><TextRun><Value>=First(Fields!DetailSummaryText.Value, "ComparisonSummary")</Value><Style><FontSize>8pt</FontSize></Style></TextRun></TextRuns><Style /></Paragraph></Paragraphs><Top>0.5in</Top><Left>0.25in</Left><Height>0.45in</Height><Width>7.05in</Width><Style><FontFamily>Segoe UI</FontFamily></Style></Textbox>
+          <Tablix Name="CurrentDetailsTablix">
+            <DataSetName>CurrentPeriodDetails</DataSetName>
+            <Top>1.1in</Top><Left>0.18in</Left><Height>5.8in</Height><Width>7.16in</Width><Style><Border><Style>None</Style></Border></Style>
+            <TablixBody>
+              <TablixColumns>
+                <TablixColumn><Width>0.62in</Width></TablixColumn>
+                <TablixColumn><Width>0.78in</Width></TablixColumn>
+                <TablixColumn><Width>1.75in</Width></TablixColumn>
+                <TablixColumn><Width>0.72in</Width></TablixColumn>
+                <TablixColumn><Width>0.56in</Width></TablixColumn>
+                <TablixColumn><Width>0.82in</Width></TablixColumn>
+                <TablixColumn><Width>0.88in</Width></TablixColumn>
+                <TablixColumn><Width>1.03in</Width></TablixColumn>
+              </TablixColumns>
+              <TablixRows>
+                <TablixRow><Height>0.28in</Height><TablixCells>
+                  <TablixCell><CellContents><Textbox Name="DtlHdr1"><CanGrow>true</CanGrow><KeepTogether>true</KeepTogether><Paragraphs><Paragraph><TextRuns><TextRun><Value>GR</Value><Style><FontWeight>Bold</FontWeight></Style></TextRun></TextRuns><Style /></Paragraph></Paragraphs><Style><Border><Style>None</Style></Border><BottomBorder><Style>Solid</Style><Color>#D7DFEA</Color></BottomBorder><FontFamily>Segoe UI</FontFamily><FontSize>7.5pt</FontSize></Style></Textbox></CellContents></TablixCell>
+                  <TablixCell><CellContents><Textbox Name="DtlHdr2"><CanGrow>true</CanGrow><KeepTogether>true</KeepTogether><Paragraphs><Paragraph><TextRuns><TextRun><Value>Recorded</Value><Style><FontWeight>Bold</FontWeight></Style></TextRun></TextRuns><Style /></Paragraph></Paragraphs><Style><Border><Style>None</Style></Border><BottomBorder><Style>Solid</Style><Color>#D7DFEA</Color></BottomBorder><FontFamily>Segoe UI</FontFamily><FontSize>7.5pt</FontSize></Style></Textbox></CellContents></TablixCell>
+                  <TablixCell><CellContents><Textbox Name="DtlHdr3"><CanGrow>true</CanGrow><KeepTogether>true</KeepTogether><Paragraphs><Paragraph><TextRuns><TextRun><Value>Customer</Value><Style><FontWeight>Bold</FontWeight></Style></TextRun></TextRuns><Style /></Paragraph></Paragraphs><Style><Border><Style>None</Style></Border><BottomBorder><Style>Solid</Style><Color>#D7DFEA</Color></BottomBorder><FontFamily>Segoe UI</FontFamily><FontSize>7.5pt</FontSize></Style></Textbox></CellContents></TablixCell>
+                  <TablixCell><CellContents><Textbox Name="DtlHdr4"><CanGrow>true</CanGrow><KeepTogether>true</KeepTogether><Paragraphs><Paragraph><TextRuns><TextRun><Value>Status</Value><Style><FontWeight>Bold</FontWeight></Style></TextRun></TextRuns><Style /></Paragraph></Paragraphs><Style><Border><Style>None</Style></Border><BottomBorder><Style>Solid</Style><Color>#D7DFEA</Color></BottomBorder><FontFamily>Segoe UI</FontFamily><FontSize>7.5pt</FontSize></Style></Textbox></CellContents></TablixCell>
+                  <TablixCell><CellContents><Textbox Name="DtlHdr5"><CanGrow>true</CanGrow><KeepTogether>true</KeepTogether><Paragraphs><Paragraph><TextRuns><TextRun><Value>Items</Value><Style><FontWeight>Bold</FontWeight></Style></TextRun></TextRuns><Style><TextAlign>Right</TextAlign></Style></Paragraph></Paragraphs><Style><Border><Style>None</Style></Border><BottomBorder><Style>Solid</Style><Color>#D7DFEA</Color></BottomBorder><FontFamily>Segoe UI</FontFamily><FontSize>7.5pt</FontSize></Style></Textbox></CellContents></TablixCell>
+                  <TablixCell><CellContents><Textbox Name="DtlHdr6"><CanGrow>true</CanGrow><KeepTogether>true</KeepTogether><Paragraphs><Paragraph><TextRuns><TextRun><Value>Open</Value><Style><FontWeight>Bold</FontWeight></Style></TextRun></TextRuns><Style><TextAlign>Right</TextAlign></Style></Paragraph></Paragraphs><Style><Border><Style>None</Style></Border><BottomBorder><Style>Solid</Style><Color>#D7DFEA</Color></BottomBorder><FontFamily>Segoe UI</FontFamily><FontSize>7.5pt</FontSize></Style></Textbox></CellContents></TablixCell>
+                  <TablixCell><CellContents><Textbox Name="DtlHdr7"><CanGrow>true</CanGrow><KeepTogether>true</KeepTogether><Paragraphs><Paragraph><TextRuns><TextRun><Value>1st despatch</Value><Style><FontWeight>Bold</FontWeight></Style></TextRun></TextRuns><Style /></Paragraph></Paragraphs><Style><Border><Style>None</Style></Border><BottomBorder><Style>Solid</Style><Color>#D7DFEA</Color></BottomBorder><FontFamily>Segoe UI</FontFamily><FontSize>7.5pt</FontSize></Style></Textbox></CellContents></TablixCell>
+                  <TablixCell><CellContents><Textbox Name="DtlHdr8"><CanGrow>true</CanGrow><KeepTogether>true</KeepTogether><Paragraphs><Paragraph><TextRuns><TextRun><Value>Notes</Value><Style><FontWeight>Bold</FontWeight></Style></TextRun></TextRuns><Style /></Paragraph></Paragraphs><Style><Border><Style>None</Style></Border><BottomBorder><Style>Solid</Style><Color>#D7DFEA</Color></BottomBorder><FontFamily>Segoe UI</FontFamily><FontSize>7.5pt</FontSize></Style></Textbox></CellContents></TablixCell>
+                </TablixCells></TablixRow>
+                <TablixRow><Height>0.28in</Height><TablixCells>
+                  <TablixCell><CellContents><Textbox Name="DtlVal1"><CanGrow>true</CanGrow><KeepTogether>true</KeepTogether><Paragraphs><Paragraph><TextRuns><TextRun><Value>=Fields!GRNumber.Value</Value><Style /></TextRun></TextRuns><Style /></Paragraph></Paragraphs><Style><Border><Style>None</Style></Border><BottomBorder><Style>Solid</Style><Color>#EEF2F7</Color></BottomBorder><FontFamily>Segoe UI</FontFamily><FontSize>7.5pt</FontSize></Style></Textbox></CellContents></TablixCell>
+                  <TablixCell><CellContents><Textbox Name="DtlVal2"><CanGrow>true</CanGrow><KeepTogether>true</KeepTogether><Paragraphs><Paragraph><TextRuns><TextRun><Value>=Format(Fields!DateRecorded.Value, "dd/MM/yy")</Value><Style /></TextRun></TextRuns><Style /></Paragraph></Paragraphs><Style><Border><Style>None</Style></Border><BottomBorder><Style>Solid</Style><Color>#EEF2F7</Color></BottomBorder><FontFamily>Segoe UI</FontFamily><FontSize>7.5pt</FontSize></Style></Textbox></CellContents></TablixCell>
+                  <TablixCell><CellContents><Textbox Name="DtlVal3"><CanGrow>true</CanGrow><KeepTogether>true</KeepTogether><Paragraphs><Paragraph><TextRuns><TextRun><Value>=Fields!Customer.Value</Value><Style /></TextRun></TextRuns><Style /></Paragraph></Paragraphs><Style><Border><Style>None</Style></Border><BottomBorder><Style>Solid</Style><Color>#EEF2F7</Color></BottomBorder><FontFamily>Segoe UI</FontFamily><FontSize>7.5pt</FontSize></Style></Textbox></CellContents></TablixCell>
+                  <TablixCell><CellContents><Textbox Name="DtlVal4"><CanGrow>true</CanGrow><KeepTogether>true</KeepTogether><Paragraphs><Paragraph><TextRuns><TextRun><Value>=Fields!Status.Value</Value><Style /></TextRun></TextRuns><Style /></Paragraph></Paragraphs><Style><Border><Style>None</Style></Border><BottomBorder><Style>Solid</Style><Color>#EEF2F7</Color></BottomBorder><FontFamily>Segoe UI</FontFamily><FontSize>7.5pt</FontSize></Style></Textbox></CellContents></TablixCell>
+                  <TablixCell><CellContents><Textbox Name="DtlVal5"><CanGrow>true</CanGrow><KeepTogether>true</KeepTogether><Paragraphs><Paragraph><TextRuns><TextRun><Value>=Fields!TotalItems.Value</Value><Style /></TextRun></TextRuns><Style><TextAlign>Right</TextAlign></Style></Paragraph></Paragraphs><Style><Border><Style>None</Style></Border><BottomBorder><Style>Solid</Style><Color>#EEF2F7</Color></BottomBorder><FontFamily>Segoe UI</FontFamily><FontSize>7.5pt</FontSize></Style></Textbox></CellContents></TablixCell>
+                  <TablixCell><CellContents><Textbox Name="DtlVal6"><CanGrow>true</CanGrow><KeepTogether>true</KeepTogether><Paragraphs><Paragraph><TextRuns><TextRun><Value>=Fields!OpenItems.Value</Value><Style /></TextRun></TextRuns><Style><TextAlign>Right</TextAlign></Style></Paragraph></Paragraphs><Style><Border><Style>None</Style></Border><BottomBorder><Style>Solid</Style><Color>#EEF2F7</Color></BottomBorder><FontFamily>Segoe UI</FontFamily><FontSize>7.5pt</FontSize></Style></Textbox></CellContents></TablixCell>
+                  <TablixCell><CellContents><Textbox Name="DtlVal7"><CanGrow>true</CanGrow><KeepTogether>true</KeepTogether><Paragraphs><Paragraph><TextRuns><TextRun><Value>=IIF(IsNothing(Fields!EarliestItemDespatch.Value), "", Format(Fields!EarliestItemDespatch.Value, "dd/MM/yy"))</Value><Style /></TextRun></TextRuns><Style /></Paragraph></Paragraphs><Style><Border><Style>None</Style></Border><BottomBorder><Style>Solid</Style><Color>#EEF2F7</Color></BottomBorder><FontFamily>Segoe UI</FontFamily><FontSize>7.5pt</FontSize></Style></Textbox></CellContents></TablixCell>
+                  <TablixCell><CellContents><Textbox Name="DtlVal8"><CanGrow>true</CanGrow><KeepTogether>true</KeepTogether><Paragraphs><Paragraph><TextRuns><TextRun><Value>=IIF(Fields!StillRunning.Value, Fields!StatusNote.Value, "Days to close: " &amp; Format(Fields!DaysRecordToClose.Value, "0"))</Value><Style /></TextRun></TextRuns><Style /></Paragraph></Paragraphs><Style><Border><Style>None</Style></Border><BottomBorder><Style>Solid</Style><Color>#EEF2F7</Color></BottomBorder><FontFamily>Segoe UI</FontFamily><FontSize>7.5pt</FontSize></Style></Textbox></CellContents></TablixCell>
+                </TablixCells></TablixRow>
+              </TablixRows>
+            </TablixBody>
+            <TablixColumnHierarchy><TablixMembers><TablixMember /><TablixMember /><TablixMember /><TablixMember /><TablixMember /><TablixMember /><TablixMember /><TablixMember /></TablixMembers></TablixColumnHierarchy>
+            <TablixRowHierarchy><TablixMembers><TablixMember /><TablixMember><Group Name="CurrentDetailsGroup" /><SortExpressions><SortExpression><Value>=Fields!DateRecorded.Value</Value><Direction>Descending</Direction></SortExpression></SortExpressions></TablixMember></TablixMembers></TablixRowHierarchy>
+          </Tablix>
+        </ReportItems>
+        <KeepTogether>true</KeepTogether>
+        <Top>38.8in</Top><Left>0in</Left><Height>9.6in</Height><Width>7.35in</Width><Style />
+      </Rectangle>
+    </ReportItems>
+    <Height>48.5in</Height>
+    <Style />
+  </Body>
+  <Width>7.57in</Width>
+  <Page>
+    <PageHeader>
+      <Height>1in</Height>
+      <PrintOnFirstPage>true</PrintOnFirstPage>
+      <PrintOnLastPage>true</PrintOnLastPage>
+      <ReportItems>
+        <Image Name="CompanyLogoImage"><Source>Database</Source><Value>=First(Fields!LogoBytes.Value, "CompanyHeader")</Value><MIMEType>image/png</MIMEType><Sizing>FitProportional</Sizing><Top>0.05in</Top><Left>0.25in</Left><Height>0.8in</Height><Width>2.2in</Width><Style /></Image>
+      </ReportItems>
+      <Style />
+    </PageHeader>
+    <PageFooter>
+      <Height>0.45in</Height>
+      <PrintOnFirstPage>true</PrintOnFirstPage>
+      <PrintOnLastPage>true</PrintOnLastPage>
+      <ReportItems>
+        <Textbox Name="PrintDateTime"><CanGrow>true</CanGrow><KeepTogether>true</KeepTogether><Paragraphs><Paragraph><TextRuns><TextRun><Value>="Date printed: " &amp; Today() &amp; "    Time printed: " &amp; TimeOfDay</Value><Style><FontSize>8pt</FontSize></Style></TextRun></TextRuns><Style /></Paragraph></Paragraphs><Top>0.2in</Top><Left>0.25in</Left><Height>0.2in</Height><Width>3.5in</Width><Style><FontFamily>Segoe UI</FontFamily></Style></Textbox>
+        <Textbox Name="PageNumbers"><CanGrow>true</CanGrow><KeepTogether>true</KeepTogether><Paragraphs><Paragraph><TextRuns><TextRun><Value>Page </Value><Style /></TextRun><TextRun><Value>=Globals!PageNumber</Value><Style /></TextRun><TextRun><Value> of </Value><Style /></TextRun><TextRun><Value>=Globals!TotalPages</Value><Style /></TextRun></TextRuns><Style><TextAlign>Right</TextAlign></Style></Paragraph></Paragraphs><Top>0.2in</Top><Left>4.82in</Left><Height>0.2in</Height><Width>2.75in</Width><Style /></Textbox>
+      </ReportItems>
+      <Style />
+    </PageFooter>
+    <PageWidth>8.27in</PageWidth>
+    <PageHeight>11.69in</PageHeight>
+    <LeftMargin>0.35in</LeftMargin>
+    <RightMargin>0.35in</RightMargin>
+    <TopMargin>0.35in</TopMargin>
+    <BottomMargin>0.35in</BottomMargin>
+    <Style />
+  </Page>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportID>e1e5eda2-3a0c-4f68-9a1a-4d3f9b4b5f01</rd:ReportID>
+</Report>

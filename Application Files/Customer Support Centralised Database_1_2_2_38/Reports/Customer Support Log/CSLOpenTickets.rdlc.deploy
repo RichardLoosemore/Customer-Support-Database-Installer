@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2008/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <Body>
+    <ReportItems>
+      <Textbox Name="TitleTextbox">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Open CSL's</Value>
+                <Style>
+                  <FontSize>16pt</FontSize>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <Top>0.05in</Top>
+        <Left>0.25in</Left>
+        <Height>0.35in</Height>
+        <Width>7.1in</Width>
+        <Style>
+          <FontFamily>Segoe UI</FontFamily>
+        </Style>
+      </Textbox>
+      <Tablix Name="OpenCslTablix">
+        <TablixBody>
+          <TablixColumns>
+            <TablixColumn>
+              <Width>5.9in</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>1.2in</Width>
+            </TablixColumn>
+          </TablixColumns>
+          <TablixRows>
+            <TablixRow>
+              <Height>1.15in</Height>
+              <TablixCells>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="CaseDetailLeft">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!CaseHeader.Value</Value>
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                                <FontSize>9pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!Summary.Value</Value>
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>="Date Opened   " &amp; Fields!DateOpenedText.Value</Value>
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>="Days Open     " &amp; Fields!DaysOpenText.Value</Value>
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>="Machine        " &amp; Fields!MachineText.Value</Value>
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <Style>
+                        <FontFamily>Segoe UI</FontFamily>
+                        <PaddingLeft>18pt</PaddingLeft>
+                        <PaddingBottom>4pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="CaseDetailRight">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!Status.Value</Value>
+                              <Style>
+                                <FontSize>9pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Right</TextAlign>
+                          </Style>
+                        </Paragraph>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!Priority.Value</Value>
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Right</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <Style>
+                        <FontFamily>Segoe UI</FontFamily>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+              </TablixCells>
+            </TablixRow>
+          </TablixRows>
+        </TablixBody>
+        <TablixColumnHierarchy>
+          <TablixMembers>
+            <TablixMember />
+            <TablixMember />
+          </TablixMembers>
+        </TablixColumnHierarchy>
+        <TablixRowHierarchy>
+          <TablixMembers>
+            <TablixMember>
+              <Group Name="OpenCslDetailGroup" />
+            </TablixMember>
+          </TablixMembers>
+        </TablixRowHierarchy>
+        <DataSetName>OpenCslItems</DataSetName>
+        <Top>0.55in</Top>
+        <Left>0.25in</Left>
+        <Height>1.15in</Height>
+        <Width>7.1in</Width>
+        <Style />
+      </Tablix>
+    </ReportItems>
+    <Height>1.95in</Height>
+    <Style />
+  </Body>
+  <Width>7.57in</Width>
+  <Page>
+    <PageHeader>
+      <Height>1in</Height>
+      <PrintOnFirstPage>true</PrintOnFirstPage>
+      <PrintOnLastPage>true</PrintOnLastPage>
+      <ReportItems>
+        <Image Name="CompanyLogoImage">
+          <Source>Database</Source>
+          <Value>=First(Fields!LogoBytes.Value, "CompanyHeader")</Value>
+          <MIMEType>image/png</MIMEType>
+          <Sizing>FitProportional</Sizing>
+          <Top>0.05in</Top>
+          <Left>0.25in</Left>
+          <Height>0.8in</Height>
+          <Width>2.2in</Width>
+          <Style />
+        </Image>
+      </ReportItems>
+      <Style />
+    </PageHeader>
+    <PageFooter>
+      <Height>0.5in</Height>
+      <PrintOnFirstPage>true</PrintOnFirstPage>
+      <PrintOnLastPage>true</PrintOnLastPage>
+      <ReportItems>
+        <Textbox Name="PrintDateTime">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>="Date printed: " &amp; Today() &amp; "    Time printed: " &amp; TimeOfDay</Value>
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style />
+            </Paragraph>
+          </Paragraphs>
+          <Top>0.25in</Top>
+          <Left>0.25in</Left>
+          <Height>0.2in</Height>
+          <Width>3.8in</Width>
+          <Style>
+            <FontFamily>Segoe UI</FontFamily>
+          </Style>
+        </Textbox>
+        <Textbox Name="PageNumbers">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun><Value>Page </Value><Style /></TextRun>
+                <TextRun><Value>=Globals!PageNumber</Value><Style /></TextRun>
+                <TextRun><Value> of </Value><Style /></TextRun>
+                <TextRun><Value>=Globals!TotalPages</Value><Style /></TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Right</TextAlign>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <Top>0.25in</Top>
+          <Left>4.82in</Left>
+          <Height>0.2in</Height>
+          <Width>2.75in</Width>
+          <Style />
+        </Textbox>
+      </ReportItems>
+      <Style />
+    </PageFooter>
+    <PageWidth>8.27in</PageWidth>
+    <PageHeight>11.69in</PageHeight>
+    <LeftMargin>0.35in</LeftMargin>
+    <RightMargin>0.35in</RightMargin>
+    <TopMargin>0.35in</TopMargin>
+    <BottomMargin>0.35in</BottomMargin>
+    <Style />
+  </Page>
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="MainDataSource">
+      <ConnectionProperties>
+        <DataProvider>System.Data.DataSet</DataProvider>
+        <ConnectString />
+      </ConnectionProperties>
+      <rd:DataSourceID>41111111-1111-1111-1111-111111111111</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="CompanyHeader">
+      <Query>
+        <DataSourceName>MainDataSource</DataSourceName>
+        <CommandText>/* Local object data */</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="CompanyName"><DataField>CompanyName</DataField><rd:TypeName>System.String</rd:TypeName></Field>
+        <Field Name="LogoBytes"><DataField>LogoBytes</DataField><rd:TypeName>System.Byte[]</rd:TypeName></Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="OpenCslItems">
+      <Query>
+        <DataSourceName>MainDataSource</DataSourceName>
+        <CommandText>/* Local object data */</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="CaseHeader"><DataField>CaseHeader</DataField><rd:TypeName>System.String</rd:TypeName></Field>
+        <Field Name="Summary"><DataField>Summary</DataField><rd:TypeName>System.String</rd:TypeName></Field>
+        <Field Name="DateOpenedText"><DataField>DateOpenedText</DataField><rd:TypeName>System.String</rd:TypeName></Field>
+        <Field Name="DaysOpenText"><DataField>DaysOpenText</DataField><rd:TypeName>System.String</rd:TypeName></Field>
+        <Field Name="MachineText"><DataField>MachineText</DataField><rd:TypeName>System.String</rd:TypeName></Field>
+        <Field Name="Status"><DataField>Status</DataField><rd:TypeName>System.String</rd:TypeName></Field>
+        <Field Name="Priority"><DataField>Priority</DataField><rd:TypeName>System.String</rd:TypeName></Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportID>25151e74-a2dd-49fd-a9f2-117630c8db72</rd:ReportID>
+</Report>
